@@ -44,8 +44,38 @@
 }/*max-width:991px*/
 
 @media screen and (max-width:768px){
-    
+	/* slideable demo widget: shrink the panel on mobile and pull it fully
+	   into view when open so it never overlaps the main content awkwardly. */
+	.demo-widget-panel{
+		width: 260px;
+		padding: 16px;
+	}
+	.demo-widget-toggle{
+		padding: 8px 5px;
+		font-size: 14px;
+		border-radius: 6px 0 0 6px;
+	}
+	.demo-widget.open .demo-widget-toggle{
+		transform: translateX(-260px);
+	}
+	.share-widget-panel{
+		width: 260px;
+		padding: 16px;
+	}
+	.share-widget.open .share-widget-toggle{
+		transform: translateX(-260px);
+	}
 }/*max-width:768px*/
+
+@media screen and (max-width:480px){
+	/* phone-sized: an even narrower panel keeps it clear of the readable column */
+	.demo-widget-panel{
+		width: 240px;
+	}
+	.demo-widget.open .demo-widget-toggle{
+		transform: translateX(-240px);
+	}
+}/*max-width:480px*/
 
 @media screen and (max-width:767px){
 	.single-about-img {max-width: 450px;}

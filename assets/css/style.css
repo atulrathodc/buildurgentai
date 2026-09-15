@@ -2750,3 +2750,148 @@ body {
     max-width: 100%;
     overflow-x: clip;
 }
+
+/* ---------------------------------------------------------------
+   Slideable widget: vertically centered right-edge drawer toggled
+   by a vertical tab. The panel is hidden off-screen by default and
+   slides in when the container gains the .open class.
+--------------------------------------------------------------- */
+.demo-widget {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+}
+
+.demo-widget-toggle {
+    writing-mode: vertical-rl;
+    padding: 10px 6px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px 0 0 6px;
+    transition: transform 0.3s ease;
+}
+
+.demo-widget-panel {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px 0 0 8px;
+}
+
+.demo-widget.open .demo-widget-panel {
+    display: block;
+    animation: demo-widget-slide-in 0.3s ease;
+}
+
+@keyframes demo-widget-slide-in {
+    from { transform: translateY(-50%) translateX(120%); }
+    to   { transform: translateY(-50%) translateX(0); }
+}
+
+.demo-widget.open .demo-widget-toggle {
+    transform: translateX(-300px);
+}
+
+.demo-widget-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 16px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 12px;
+}
+
+/* ---------------------------------------------------------------
+   Slideable "Share" widget: right-edge drawer mirroring the demo
+   widget, holding social share links so the site can be posted to
+   a feed. The panel is hidden (display:none) when closed and slides
+   in with the same keyframe animation; link colors follow each brand.
+--------------------------------------------------------------- */
+.share-widget {
+    position: fixed;
+    right: 0;
+    top: 64%;
+    transform: translateY(-50%);
+    z-index: 9999;
+}
+
+.share-widget-toggle {
+    writing-mode: vertical-rl;
+    padding: 10px 6px;
+    background-color: #1da1f2;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px 0 0 6px;
+    transition: transform 0.3s ease;
+}
+
+.share-widget-panel {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 64%;
+    transform: translateY(-50%);
+    width: 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px 0 0 8px;
+}
+
+.share-widget.open .share-widget-panel {
+    display: block;
+    animation: demo-widget-slide-in 0.3s ease;
+}
+
+.share-widget.open .share-widget-toggle {
+    transform: translateX(-300px);
+}
+
+.share-widget__links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.share-widget__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    color: #fff !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.share-widget__link:hover,
+.share-widget__link:focus {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    color: #fff !important;
+}
+
+.share-widget__link--x        { background-color: #000; }
+.share-widget__link--facebook { background-color: #1877f2; }
+.share-widget__link--linkedin { background-color: #0a66c2; }
+.share-widget__link--whatsapp { background-color: #25d366; }

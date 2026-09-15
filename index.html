@@ -44,6 +44,13 @@
     <!--font-awesome.min.css-->
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 
+    <!--jsSocials (third-party share widget) styles: ./node_modules-style pinned
+        CDN build; both jsSocials and its FontAwesome icons are vendored from
+        the official cdnjs release so the share widget renders without any
+        account or backend.-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsSocials/1.5.0/jssocials.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsSocials/1.5.0/jssocials-theme-flat.min.css">
+
     <!--flat icon css-->
     <link rel="stylesheet" href="assets/css/flaticon.css">
 
@@ -187,19 +194,6 @@
                             <li class="smooth-menu"><a href="#showcase">showcase</a></li>
                             <li class="smooth-menu"><a href="#integrations">integrations</a></li>
                             <li class="smooth-menu"><a href="#contact">contact</a></li>
-                            <!-- Demo CTA (header action, in-page `#contact` anchor).
-                                 custom.js delegates ONE smooth-scroll handler to every
-                                 `a[href^="#"]`, so this CTA no longer needs a helper class to
-                                 reach its section - and it gets the same fixed-navbar offset
-                                 as the plain nav links. -->
-                            <li class="nav-whatsapp">
-                                <a href="#contact" aria-label="Book a demo of BuildUrgent AI">
-                                    <span class="whatsapp-cta">
-                                        <i class="fa fa-calendar-check" aria-hidden="true"></i>
-                                        <span class="whatsapp-cta__label">book a demo</span>
-                                    </span>
-                                </a>
-                            </li>
                         </ul><!--/.nav -->
                     </div><!-- /.navbar-collapse -->
                 </div><!--/.container-->
@@ -211,6 +205,31 @@
 
     </header><!-- /.top-area-->
     <!-- top-area End -->
+
+    <!-- Fixed slideable "Book a Demo" widget: right-edge toggle tab + slide-out panel. -->
+    <div class="demo-widget">
+        <button class="demo-widget-toggle" aria-label="Open book a demo panel">&#9776;</button>
+        <div class="demo-widget-panel">
+            <h3>Book a Demo</h3>
+            <p>Schedule a personalized walkthrough.</p>
+            <a href="#contact" class="demo-widget-btn">Book a Demo</a>
+        </div>
+    </div>
+
+    <!-- Fixed slideable "Share" widget: right-edge toggle tab + slide-out panel with
+         social share links so anyone can post the site on their feed.
+         The shared URL is the live product site (ai.buildurgent.com); each target
+         opens in a new tab. -->
+    <div class="share-widget">
+        <button class="share-widget-toggle" aria-label="Open share panel">&#10084;</button>
+        <div class="share-widget-panel">
+            <h3>Share this site</h3>
+            <p>Post BuildUrgent AI to your feed.</p>
+            <!-- jsSocials (third-party, jQuery, client-side) renders the share
+                 buttons; see custom.js for the network/sharing config. -->
+            <div class="share-widget__socials" id="share-socials"></div>
+        </div>
+    </div>
 
     <!--welcome-hero start -->
     <section id="welcome-hero" class="welcome-hero">
@@ -1183,6 +1202,10 @@
     <!-- Include all js compiled plugins (below), or include individual files as needed -->
 
     <script src="assets/js/jquery.js"></script>
+
+    <!-- jsSocials (third-party jQuery share plugin) — client-side only, no
+         account/backend; the official cdnjs release. Must load after jQuery. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSocials/1.5.0/jssocials.min.js"></script>
 
     <!-- jQuery Easing shim for the header items.
          assets/js/custom.js binds every `li.smooth-menu a` click, calls

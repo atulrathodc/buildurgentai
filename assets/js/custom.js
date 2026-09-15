@@ -60,6 +60,44 @@ $(document).ready(function(){
 			return false;
 		});
 	
+	// 1b. Slideable "Book a Demo" widget (right-edge drawer)
+		// The widget (index.html) stays collapsed as a right-edge tab until the
+		// user clicks it; the click toggles `.open` so the panel slides in/out.
+		$(document).on('click', '.demo-widget-toggle', function () {
+			$(this).closest('.demo-widget').toggleClass('open');
+			return false;
+		});
+
+	// 1c. Slideable "Share" widget (right-edge drawer, same pattern)
+		// The share widget (index.html) stays collapsed as a right-edge tab with
+		// the social share links; clicking the tab toggles `.open` to slide the
+		// panel with the X / Facebook / LinkedIn / WhatsApp links in/out.
+		$(document).on('click', '.share-widget-toggle', function () {
+			$(this).closest('.share-widget').toggleClass('open');
+			return false;
+		});
+
+	// 1d. jsSocials (third-party jQuery share plugin) — renders the actual
+		// share buttons inside #share-socials. Purely client-side (no account or
+		// backend): each network builds its own share URL from the live page URL
+		// and opens in a new tab. Must run after jQuery + the jsSocials script
+		// (both loaded before custom.js). Wrap in try/catch so a CDN hiccup can
+		// never break the rest of the page.
+		if ($('#share-socials').length) {
+			try {
+				$('#share-socials').jsSocials({
+					showLabel: false,
+					showCount: false,
+					shares: [
+						{ share: 'twitter', label: 'X / Twitter' },
+						{ share: 'facebook', label: 'Facebook' },
+						{ share: 'linkedin', label: 'LinkedIn' },
+						{ share: 'whatsapp', label: 'WhatsApp' }
+					]
+				});
+			} catch (e) { /* jsSocials unavailable; share buttons simply not rendered */ }
+		}
+	
 	
 	
 	// 2. Smooth Scroll spy
