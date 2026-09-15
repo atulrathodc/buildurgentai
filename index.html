@@ -176,12 +176,16 @@
                     <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                             <li class=" smooth-menu active"></li>
-                            <li class="smooth-menu"><a href="#about">platform</a></li>
-                            <li class=" smooth-menu"><a href="#education">how it works</a></li>
-                            <li class="smooth-menu"><a href="#skills">capabilities</a></li>
-                            <li class="smooth-menu"><a href="#experience">use cases</a></li>
-                            <li class="smooth-menu"><a href="#portfolio">showcase</a></li>
-                            <li class="smooth-menu"><a href="#clients">integrations</a></li>
+                            <!-- Header items: every href points at a section whose heading
+                                 matches this label (see the matching ids below) - no legacy
+                                 template ids (#about/#education/#skills/#experience/#portfolio/
+                                 #clients) survive, because those named content the page no
+                                 longer has. -->
+                            <li class="smooth-menu"><a href="#how-it-works">how it works</a></li>
+                            <li class="smooth-menu"><a href="#capabilities">capabilities</a></li>
+                            <li class="smooth-menu"><a href="#use-cases">use cases</a></li>
+                            <li class="smooth-menu"><a href="#showcase">showcase</a></li>
+                            <li class="smooth-menu"><a href="#integrations">integrations</a></li>
                             <li class="smooth-menu"><a href="#contact">contact</a></li>
                             <!-- Demo CTA (header action).
                                  NOTE: this <li> deliberately does NOT carry `smooth-menu` —
@@ -230,7 +234,7 @@
                             your real workflows.</p>
                         <div class="hero-actions">
                             <a class="hero-cta" href="#contact">start building</a>
-                            <a class="hero-cta hero-cta--ghost" href="#education">see how it works</a>
+                            <a class="hero-cta hero-cta--ghost" href="#how-it-works">see how it works</a>
                         </div><!--/.hero-actions-->
                     </div><!--/.header-text-->
                 </div><!--/.col-->
@@ -245,7 +249,11 @@
              external ad scripts only added dead weight and console noise. -->
     </section>
     <!--about start -->
-    <section id="about" class="about">
+    <section id="platform" class="about">
+        <!-- Legacy deep-link alias: GET /api/profile still publishes
+             "https://ai.buildurgent.com/#about" as its `docs` URL, so the former
+             fragment must keep resolving to this platform section. -->
+        <span id="about" aria-hidden="true"></span>
         <div class="section-heading text-center">
             <h2>why buildurgent ai</h2>
         </div>
@@ -273,7 +281,7 @@
                                 <div class="col-sm-4">
                                     <div class="single-about-add-info">
                                         <h3>email</h3>
-                                        <p>atulrathodc@gmail.com</p>
+                                        <p>hello@buildurgent.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -301,7 +309,7 @@
     <!--about end -->
 
     <!--education start -->
-    <section id="education" class="education">
+    <section id="how-it-works" class="education">
         <div class="section-heading text-center">
             <h2>how it works</h2>
         </div>
@@ -389,7 +397,7 @@
     <!--education end -->
 
     <!--skills start -->
-    <section id="skills" class="skills">
+    <section id="capabilities" class="skills">
         <div class="skill-content">
             <div class="section-heading text-center">
                 <h2>capabilities</h2>
@@ -509,7 +517,7 @@
 
 
     <!--experience start -->
-    <section id="experience" class="experience">
+    <section id="use-cases" class="experience">
         <div class="section-heading text-center">
             <h2>use cases</h2>
         </div>
@@ -665,7 +673,7 @@
     <!--experience end -->
 
     <!--profiles start -->
-    <section id="profiles" class="profiles">
+    <section id="security" class="profiles">
         <div class="profiles-details">
             <div class="section-heading text-center">
                 <h2>security & trust</h2>
@@ -724,10 +732,14 @@
     <!--profiles end -->
 
     <!--portfolio start -->
-    <section id="portfolio" class="portfolio">
+    <section id="showcase" class="portfolio">
+        <!-- Legacy deep-link alias: GET /api/projects still returns "#portfolio"
+             as each tile's `url`, so the former fragment must keep resolving to
+             this showcase section. -->
+        <span id="portfolio" aria-hidden="true"></span>
         <div class="portfolio-details">
             <div class="section-heading text-center">
-                <h2>what teams ship</h2>
+                <h2>showcase</h2>
             </div>
             <div class="container">
                 <div class="portfolio-content">
@@ -993,7 +1005,7 @@
     <!--portfolio end -->
 
     <!--integrations start -->
-    <section id="clients" class="clients">
+    <section id="integrations" class="clients">
         <div class="section-heading text-center">
             <h2>integrations</h2>
         </div>
@@ -1005,7 +1017,7 @@
 
                         <div class="client-3d__slide" role="group" aria-roledescription="slide"
                             aria-label="1 of 6: Data warehouse">
-                            <a class="client-3d__tile" href="#">
+                            <a class="client-3d__tile" href="#contact">
                                 <span class="client-3d__glow" aria-hidden="true"></span>
                                 <span class="client-3d__mark" aria-hidden="true">DW</span>
                                 <span class="client-3d__name">Data warehouse</span>
@@ -1015,7 +1027,7 @@
 
                         <div class="client-3d__slide" role="group" aria-roledescription="slide"
                             aria-label="2 of 6: CRM and support">
-                            <a class="client-3d__tile" href="#">
+                            <a class="client-3d__tile" href="#contact">
                                 <span class="client-3d__glow" aria-hidden="true"></span>
                                 <span class="client-3d__mark" aria-hidden="true">CRM</span>
                                 <span class="client-3d__name">CRM &amp; support</span>
@@ -1025,7 +1037,7 @@
 
                         <div class="client-3d__slide" role="group" aria-roledescription="slide"
                             aria-label="3 of 6: Documents and search">
-                            <a class="client-3d__tile" href="#">
+                            <a class="client-3d__tile" href="#contact">
                                 <span class="client-3d__glow" aria-hidden="true"></span>
                                 <span class="client-3d__mark" aria-hidden="true">DOC</span>
                                 <span class="client-3d__name">Docs &amp; search</span>
@@ -1035,7 +1047,7 @@
 
                         <div class="client-3d__slide" role="group" aria-roledescription="slide"
                             aria-label="4 of 6: Code and CI">
-                            <a class="client-3d__tile" href="#">
+                            <a class="client-3d__tile" href="#contact">
                                 <span class="client-3d__glow" aria-hidden="true"></span>
                                 <span class="client-3d__mark" aria-hidden="true">CI</span>
                                 <span class="client-3d__name">Code &amp; CI</span>
@@ -1045,7 +1057,7 @@
 
                         <div class="client-3d__slide" role="group" aria-roledescription="slide"
                             aria-label="5 of 6: Messaging">
-                            <a class="client-3d__tile" href="#">
+                            <a class="client-3d__tile" href="#contact">
                                 <span class="client-3d__glow" aria-hidden="true"></span>
                                 <span class="client-3d__mark" aria-hidden="true">MSG</span>
                                 <span class="client-3d__name">Messaging</span>
@@ -1055,7 +1067,7 @@
 
                         <div class="client-3d__slide" role="group" aria-roledescription="slide"
                             aria-label="6 of 6: Model providers">
-                            <a class="client-3d__tile" href="#">
+                            <a class="client-3d__tile" href="#contact">
                                 <span class="client-3d__glow" aria-hidden="true"></span>
                                 <span class="client-3d__mark" aria-hidden="true">LLM</span>
                                 <span class="client-3d__name">Model providers</span>
@@ -1102,16 +1114,15 @@
                                     that get it into production.</p>
                                 <div class="single-contact-btn">
                                     <a class="contact-btn"
-                                        href="https://mail.google.com/mail/?view=cm&fs=1&to=atulrathodc@gmail.com"
-                                        target="_blank" rel="noopener noreferrer"
-                                        rel="noopener noreferrer">
+                                        href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@buildurgent.com"
+                                        target="_blank" rel="noopener noreferrer">
                                         book a demo
                                     </a>
                                 </div><!--/.single-contact-btn-->
                                 <div class="single-contact-btn">
-                                    <a href="https://wa.me/917263932000?text=Hi%20Atul%2C%20I%27d%20like%20to%20work%20with%20you."
+                                    <a href="https://wa.me/917263932000?text=Hi%20BuildUrgent%20AI%2C%20I%27d%20like%20to%20work%20with%20you."
                                         target="_blank" rel="noopener noreferrer"
-                                        aria-label="Chat with Atul on WhatsApp (opens in a new tab)">
+                                        aria-label="Chat with the BuildUrgent AI team on WhatsApp (opens in a new tab)">
                                         <span class="whatsapp-cta">
                                             <i class="fa fa-whatsapp" aria-hidden="true"></i>
                                             <span class="whatsapp-cta__label">WhatsApp</span>
@@ -1137,7 +1148,7 @@
                                 <div class="contact-add-info">
                                     <div class="single-contact-add-info">
                                         <h3>email</h3>
-                                        <p>atulrathodc@gmail.com</p>
+                                        <p>hello@buildurgent.com</p>
                                     </div>
                                 </div>
                             </div><!--/.contact-adress-->
@@ -1176,6 +1187,30 @@
     <!-- Include all js compiled plugins (below), or include individual files as needed -->
 
     <script src="assets/js/jquery.js"></script>
+
+    <!-- jQuery Easing shim for the header items.
+         assets/js/custom.js binds every `li.smooth-menu a` click, calls
+         event.preventDefault() and then animates the scroll with the
+         'easeInOutExpo' easing - but the jQuery Easing plugin was never bundled
+         with this static template, so jQuery threw
+         "TypeError: n.easing[this.easing] is not a function" inside .animate().
+         Because preventDefault() had already run, that throw also cancelled the
+         default anchor jump: every header item was a DEAD CLICK that never
+         reached its section (verified in the browser: the target section stayed
+         3476px below the viewport). Registering the standard Penner
+         easeInOutExpo here restores the jump for all eight header items without
+         touching custom.js. -->
+    <script>
+        (function ($) {
+            if (!$ || !$.easing) return;
+            $.easing.easeInOutExpo = function (x, t, b, c, d) {
+                if (t === 0) return b;
+                if (t === d) return b + c;
+                if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+                return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+            };
+        })(window.jQuery);
+    </script>
 
     <!--bootstrap.min.js-->
     <script src="assets/js/bootstrap.min.js"></script>
