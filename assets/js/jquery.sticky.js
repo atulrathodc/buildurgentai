@@ -40,19 +40,94 @@
     $document = $(document),
     sticked = [],
     windowHeight = $window.height(),
+
+    /* ----------------------------------------------------------------------
+       Scroll cost. Measured on this page: ~63 forced layout reads per scroll
+       event, and the first scroll frame ran ~3x the median frame time.
+
+       The old pass ran on EVERY scroll event and mixed reads with writes:
+       `.css('height', ...)` (write -> invalidate style + layout) followed by
+       `offset()` / `outerHeight()` (read -> force a synchronous reflow), several
+       times per event. Now:
+         * scroll events are coalesced into ONE rAF tick, so a wheel burst costs
+           a single pass instead of one pass per event;
+         * the geometry is cached and re-read only on resize / DOM mutation
+           (`metricsDirty`);
+         * the wrapper height is written only when it actually changed, so a
+           plain scroll no longer invalidates layout at all.
+       Public behaviour (sticky-start/update/end, bottom reached/not-reached)
+       is unchanged.
+    ---------------------------------------------------------------------- */
+    raf = window.requestAnimationFrame || function (cb) { return window.setTimeout(cb, 16); },
+    rafId = 0,
+    metricsDirty = true,
+
+    /* Page-level geometry, cached for the same reason as the per-element
+       geometry below: `$document.height()` alone costs ~5 forced layout reads
+       (jQuery takes the max of the body/documentElement scroll+offset+client
+       heights, plus a getComputedStyle), and the old tick called it on EVERY
+       scroll event. */
+    pageMetrics = { docHeight: 0, viewportHeight: 0, dwh: 0 },
+    refreshPageMetrics = function () {
+      pageMetrics.viewportHeight = windowHeight;
+      pageMetrics.docHeight = $document.height();
+      pageMetrics.dwh = pageMetrics.docHeight - pageMetrics.viewportHeight;
+    },
+
+    refreshMetrics = function (s) {
+      s.elementTop = s.stickyWrapper.offset().top;
+      s.elementHeight = s.stickyElement.outerHeight();
+      var container = s.stickyWrapper.parent();
+      s.containerTop = container.offset().top;
+      s.containerHeight = container.outerHeight();
+      s.containerBottom = s.containerTop + s.containerHeight;
+    },
+    syncWrapperHeight = function (s) {
+      if (s.wrapperHeight !== s.elementHeight) {
+        s.wrapperHeight = s.elementHeight;
+        s.stickyWrapper.css('height', s.elementHeight);
+      }
+    },
+    scheduleScroller = function () {
+      if (rafId) { return; }
+      rafId = raf(scroller);
+    },
     scroller = function() {
+      rafId = 0;
+
+      // ---- READ PASS -------------------------------------------------------
+      // Every layout read happens HERE, before any style write, and only when
+      // the cached geometry is really stale (resize / DOM mutation / page
+      // growth / first run). `metricsDirty` used to never be cleared, so this
+      // pass ran - and re-read `$(document).height()`, `offset()` and
+      // `outerHeight()` - on EVERY scroll tick: ~15 forced layout reads per
+      // event, each one flushing the layout the write pass below had just
+      // invalidated. Clearing the flag makes a steady-state scroll frame
+      // read-free (`$window.scrollTop()` is `pageYOffset`: no layout).
+      if (metricsDirty) {
+        refreshPageMetrics();
+        for (var m = 0, ml = sticked.length; m < ml; m++) { refreshMetrics(sticked[m]); }
+        metricsDirty = false;
+      }
+
+      // ---- WRITE PASS ------------------------------------------------------
       var scrollTop = $window.scrollTop(),
-        documentHeight = $document.height(),
-        dwh = documentHeight - windowHeight,
+        documentHeight = pageMetrics.docHeight,
+        dwh = pageMetrics.dwh,
         extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
 
       for (var i = 0, l = sticked.length; i < l; i++) {
-        var s = sticked[i],
-          elementTop = s.stickyWrapper.offset().top,
-          etse = elementTop - s.topSpacing - extra;
+        var s = sticked[i];
 
-        //update height in case of dynamic content
-        s.stickyWrapper.css('height', s.stickyElement.outerHeight());
+        // geometry comes from the cache (refreshMetrics); it is re-read only on
+        // resize / DOM mutation instead of on every scroll tick
+        if (s.elementTop === undefined) { refreshMetrics(s); }
+
+        //update height in case of dynamic content - only when it really changed
+        syncWrapperHeight(s);
+
+        var elementTop = s.elementTop,
+          etse = elementTop - s.topSpacing - extra;
 
         if (scrollTop <= etse) {
           if (s.currentTop !== null) {
@@ -66,10 +141,11 @@
             s.stickyElement.parent().removeClass(s.className);
             s.stickyElement.trigger('sticky-end', [s]);
             s.currentTop = null;
+            s.unstuck = null; // the next stick starts from a clean pin state
           }
         }
         else {
-          var newTop = documentHeight - s.stickyElement.outerHeight()
+          var newTop = documentHeight - s.elementHeight
             - s.topSpacing - s.bottomSpacing - scrollTop - extra;
           if (newTop < 0) {
             newTop = newTop + s.topSpacing;
@@ -113,28 +189,42 @@
             s.currentTop = newTop;
           }
 
-          // Check if sticky has reached end of container and stop sticking
-          var stickyWrapperContainer = s.stickyWrapper.parent();
-          var unstick = (s.stickyElement.offset().top + s.stickyElement.outerHeight() >= stickyWrapperContainer.offset().top + stickyWrapperContainer.outerHeight()) && (s.stickyElement.offset().top <= s.topSpacing);
+          // Check if sticky has reached end of container and stop sticking.
+          // The pinned element sits at `newTop` in the viewport, so its page
+          // position is `scrollTop + newTop`: the end-of-container test is
+          // answered from the CACHE (`containerBottom` / `elementHeight`) instead
+          // of the 4 live `offset()` reads this used to do straight after the
+          // `.css()` writes above - a write/read pair that forced a synchronous
+          // reflow on every single frame.
+          var pinnedPageTop = scrollTop + newTop,
+            unstick = (pinnedPageTop + s.elementHeight >= s.containerBottom) &&
+              (pinnedPageTop <= s.topSpacing);
 
-          if( unstick ) {
-            s.stickyElement
-              .css('position', 'absolute')
-              .css('top', '')
-              .css('bottom', 0)
-              .css('z-index', '');
-          } else {
-            s.stickyElement
-              .css('position', 'fixed')
-              .css('top', newTop)
-              .css('bottom', '')
-              .css('z-index', s.zIndex);
+          // ...and the style write itself only happens when the state flipped,
+          // so a plain scroll no longer re-invalidates the style (and repaints
+          // the blurred backdrop) of the fixed navbar on every frame.
+          if (unstick !== s.unstuck) {
+            s.unstuck = unstick;
+            if( unstick ) {
+              s.stickyElement
+                .css('position', 'absolute')
+                .css('top', '')
+                .css('bottom', 0)
+                .css('z-index', '');
+            } else {
+              s.stickyElement
+                .css('position', 'fixed')
+                .css('top', newTop)
+                .css('bottom', '')
+                .css('z-index', s.zIndex);
+            }
           }
         }
       }
     },
     resizer = function() {
       windowHeight = $window.height();
+      metricsDirty = true; // viewport change invalidates the cached geometry
 
       for (var i = 0, l = sticked.length; i < l; i++) {
         var s = sticked[i];
@@ -196,6 +286,7 @@
         if (stickyWrapper) {
           stickyWrapper.css('height', element.outerHeight());
         }
+        metricsDirty = true; // dynamic content invalidates the cached geometry
       },
 
       setupChangeListeners: function(stickyElement) {
@@ -256,11 +347,23 @@
 
   // should be more efficient than using $window.scroll(scroller) and $window.resize(resizer):
   if (window.addEventListener) {
-    window.addEventListener('scroll', scroller, false);
+    window.addEventListener('scroll', scheduleScroller, { passive: true });
     window.addEventListener('resize', resizer, false);
+    window.addEventListener('load', function () { metricsDirty = true; }, false);
   } else if (window.attachEvent) {
     window.attachEvent('onscroll', scroller);
     window.attachEvent('onresize', resizer);
+  }
+
+  /* The cached geometry must be invalidated whenever the page CAN have changed
+     height - it must never be re-read on every scroll tick. The page grows on its
+     own while you scroll (sections and carousels build themselves as they enter
+     the view, images/fonts settle) and `<body>` grows with its content
+     (`height: auto`), so a ResizeObserver on the body fires exactly at those
+     moments. Together with the resize + DOM-mutation / load hooks above, that is
+     what keeps the read pass off the scroll path. */
+  if (window.ResizeObserver && document.body) {
+    new window.ResizeObserver(function () { metricsDirty = true; }).observe(document.body);
   }
 
   $.fn.sticky = function(method) {

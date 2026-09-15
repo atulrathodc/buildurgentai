@@ -187,10 +187,11 @@
                             <li class="smooth-menu"><a href="#showcase">showcase</a></li>
                             <li class="smooth-menu"><a href="#integrations">integrations</a></li>
                             <li class="smooth-menu"><a href="#contact">contact</a></li>
-                            <!-- Demo CTA (header action).
-                                 NOTE: this <li> deliberately does NOT carry `smooth-menu` —
-                                 custom.js binds `li.smooth-menu a` and calls preventDefault(),
-                                 which would block the in-page anchor. -->
+                            <!-- Demo CTA (header action, in-page `#contact` anchor).
+                                 custom.js delegates ONE smooth-scroll handler to every
+                                 `a[href^="#"]`, so this CTA no longer needs a helper class to
+                                 reach its section - and it gets the same fixed-navbar offset
+                                 as the plain nav links. -->
                             <li class="nav-whatsapp">
                                 <a href="#contact" aria-label="Book a demo of BuildUrgent AI">
                                     <span class="whatsapp-cta">

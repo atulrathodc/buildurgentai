@@ -99,7 +99,9 @@
 
         /* parallax3d.js bails out when the WebGL flag is set, so if it has not
            initialised yet (or ran during a WebGL session) pull it in now. */
-        if (!window.P3D && !cssFallbackLoaded) {
+        if (window.P3D && window.P3D.revive) {
+            try { window.P3D.revive(); } catch (e) { /* noop */ }
+        } else if (!cssFallbackLoaded) {
             cssFallbackLoaded = true;
             var s = document.createElement('script');
             s.src = 'assets/js/parallax3d.js';
@@ -1014,6 +1016,14 @@
     -------------------------------------------------------------------- */
     stage.classList.add('p3d-webgl');
     window.P3D_WEBGL_ACTIVE = true;
+
+    /* parallax3d.js is parsed BEFORE this deferred file, so the CSS driver may
+       already have initialised and started its own scroll-driven rAF loop on the
+       layers this canvas replaces. Hand the stage over explicitly instead of
+       letting both drivers animate it (see the measured scroll-frame cost). */
+    if (window.P3D && window.P3D.destroy) {
+        try { window.P3D.destroy(); } catch (e) { /* noop */ }
+    }
 
     onResize();
 

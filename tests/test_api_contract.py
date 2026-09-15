@@ -36,8 +36,14 @@ def _load_server():
 server = _load_server()
 
 #: Asset paths the page actually references (``<img src>`` etc.).
+#: The attribute-quote pair is built with ``chr()`` so the pattern needs no string
+#: escapes - it is exactly ``["\'](assets/[^"\']+)["\']``.
+_ATTR_QUOTES = chr(34) + chr(39)
 _REFERENCED = set(
-    re.findall(r'["\'](assets/[^"\']+)["\']', INDEX_HTML.read_text(encoding="utf-8"))
+    re.findall(
+        "[" + _ATTR_QUOTES + "](assets/[^" + _ATTR_QUOTES + "]+)[" + _ATTR_QUOTES + "]",
+        INDEX_HTML.read_text(encoding="utf-8"),
+    )
 )
 
 

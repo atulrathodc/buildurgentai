@@ -18,13 +18,41 @@ $(document).ready(function(){
 ======================================*/
 
     // 1. Scroll To Top 
-		$(window).on('scroll',function () {
-			if ($(this).scrollTop() > 600) {
-				$('.return-to-top').fadeIn();
+		// SCROLL-FRAME COST: the old handler ran jQuery's `.fadeIn()`/`.fadeOut()`
+		// on EVERY scroll event. Each of those calls pushes another
+		// queued animation and runs the `:visible` filter, which reads
+		// offsetWidth/offsetHeight - i.e. a forced synchronous reflow per scroll
+		// tick, plus a style write per tick on the fixed "return to top" button.
+		// Measured: ~63 forced layout reads per scroll event, first frame ~25ms.
+		// Now the handler only flags a frame and the work is coalesced into one
+		// rAF tick, touching the DOM only when the visibility state really
+		// changed (no per-event animation churn, no per-event reflow).
+		var RETURN_TOP_AT = 600;
+		var $returnToTop = $('.return-to-top');
+		var returnTopShown = false;
+		var returnTopTicking = false;
+
+		function syncReturnToTop() {
+			returnTopTicking = false;
+			var y = window.pageYOffset ||
+				(document.documentElement && document.documentElement.scrollTop) ||
+				(document.body && document.body.scrollTop) || 0;
+			var shouldShow = y > RETURN_TOP_AT;
+			if (shouldShow === returnTopShown) { return; }
+			returnTopShown = shouldShow;
+			if (shouldShow) {
+				$returnToTop.stop(true, true).fadeIn();
 			} else {
-				$('.return-to-top').fadeOut();
+				$returnToTop.stop(true, true).fadeOut();
 			}
+		}
+
+		$(window).on('scroll', function () {
+			if (returnTopTicking) { return; }
+			returnTopTicking = true;
+			(window.requestAnimationFrame || function (cb) { return window.setTimeout(cb, 16); })(syncReturnToTop);
 		});
+		syncReturnToTop();
 		$('.return-to-top').on('click',function(){
 				$('html, body').animate({
 				scrollTop: 0
@@ -42,12 +70,121 @@ $(document).ready(function(){
 		
 		//=============
 
-		$('li.smooth-menu a').bind("click", function(event) {
+		// ONE delegated handler for every `a[href^="#"]` on the page: the header
+		// nav, the header "book a demo" CTA, the hero CTAs, the service/showcase
+		// tiles and the footer links. The old handler only bound
+		// `li.smooth-menu a`, so every other anchor fell through to the browser's
+		// own jump - and none of them accounted for the fixed navbar:
+		//
+		//   * the navbar is `position: fixed` and ~190px tall, so scrolling to a
+		//     bare `offset().top` parked the section heading BEHIND it - the
+		//     "does not scroll to the right content" symptom;
+		//   * the offset is therefore read LIVE from the navbar (+ gap) instead of
+		//     hard-coded, so it stays correct at every breakpoint. It matches the
+		//     `scroll-margin-top: var(--nav-h)` fallback in style.css, which
+		//     covers the browser's own hash navigation (deep links, JS off);
+		//   * both roots are animated: whichever of html/body is the scroll
+		//     container for the current layout is in the set (see the body rule
+		//     in style.css).
+		var NAV_GAP = 16; // breathing room between the navbar and the heading
+
+		function navOffset() {
+			var $nav = $('nav.navbar.bootsnav');
+			return ($nav.length ? $nav.outerHeight() : 0) + NAV_GAP;
+		}
+
+		// Sections above the target can still change height around the scroll (the
+		// integrations carousel and the showcase rows build themselves as they enter
+		// the view, images/fonts settle), which leaves the heading hundreds of px off.
+		// Re-check on a short bounded schedule and re-snap whenever it drifted - and
+		// do the same after a deep link, where the BROWSER jumps while the page is
+		// still short. `attempts` bounds the retries so this can never loop forever.
+		//
+		// SCROLL JERK: the scheduled re-check used to be unconditional, so the chain
+		// kept re-snapping for up to ~1.8s after a click and YANKED the page back to
+		// the old heading while the user was already scrolling again - and after two
+		// quick nav clicks the abandoned chain of the first one dragged the page
+		// away from the second (measured: #capabilities then #contact left the
+		// contact section 4800px below the viewport, i.e. the page snapped back).
+		// `navToken` is bumped by a new navigation and by real scroll INPUT
+		// (wheel / touch / key, none of which programmatic scrolling dispatches),
+		// so an outdated chain aborts instead of fighting the user.
+		var navToken = 0;
+
+		function align(el, duration, attempts, token) {
+			if (token !== navToken) { return; }
+
+			var top = Math.max(0, Math.round($(el).offset().top - navOffset())),
+				current = Math.round($(window).scrollTop());
+
+			if (Math.abs(current - top) > 4) {
+				$('html, body').stop().animate({
+					scrollTop: top
+				}, duration === undefined ? 250 : duration);
+			}
+
+			if (attempts) {
+				window.setTimeout(function () {
+					align(el, 250, attempts - 1, token);
+				}, 300);
+			}
+		}
+
+		// the user is in control the moment they touch wheel / trackpad / keyboard
+		$(window).on('wheel touchstart keydown', function () {
+			navToken++;
+		});
+
+		$(window).on('load', function () {
+			var el;
+			if (location.hash.length > 1) {
+				el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+				if (el) {
+					align(el, 0, 6, navToken); // instant: this corrects the browser's own jump
+				}
+			}
+		});
+
+		$(document).on('click', 'a[href^="#"]', function (event) {
+			var href = $(this).attr('href'),
+				el,
+				top;
+
+			if (!href || href === '#') {
+				return; // a bare "#" is not a target: leave the default alone
+			}
+
+			// getElementById (not $(href)) - no selector escaping, and a hash that
+			// matches nothing is simply left to the browser.
+			el = document.getElementById(decodeURIComponent(href.slice(1)));
+			if (!el) {
+				return;
+			}
+
 			event.preventDefault();
-			var anchor = $(this);
+
+			// a new navigation supersedes any re-snap still scheduled by the
+			// previous one (see `navToken` in align())
+			navToken++;
+
+			top = Math.max(0, Math.round($(el).offset().top - navOffset()));
 			$('html, body').stop().animate({
-				scrollTop: $(anchor.attr('href')).offset().top - 0
-			}, 1200,'easeInOutExpo');
+				scrollTop: top
+			}, 900, 'easeInOutExpo', function () {
+				align(el, 250, 6, navToken);
+			});
+
+			// close the mobile menu: the target must actually be visible once it lands
+			var $openMenu = $('.navbar-collapse.in');
+			if ($openMenu.length && $.fn.collapse) {
+				$openMenu.collapse('hide');
+			}
+
+			// keep the URL shareable, but with pushState so the browser does not
+			// jump again (which would undo the header offset above)
+			if (window.history && history.pushState) {
+				history.pushState(null, '', href);
+			}
 		});
 		
 		$('body').scrollspy({
@@ -60,7 +197,21 @@ $(document).ready(function(){
 		var dataToggleTooTip = $('[data-toggle="tooltip"]');
 		var progressBar = $(".progress-bar");
 		if (progressBar.length) {
-			progressBar.appear(function () {
+			// SCROLL-FRAME COST: this used to be `progressBar.appear(...)`.
+			// assets/js/jquery.appear.js binds ONE `scroll` handler PER ELEMENT
+			// (8 progress bars here), and each of them runs `$(el).is(':visible')`
+			// + `$(el).offset()` + `$(el).height()` on EVERY scroll event - every
+			// one of those calls flushes layout synchronously in the scroll frame.
+			// Measured on the live page: the `:visible` filter alone was the
+			// biggest single per-event forced-layout source (~10 reads/event for
+			// this section alone, plus the offset/height reads around it).
+			// IntersectionObserver reports the exact same "element entered the
+			// viewport" moment, from the compositor, with no scroll handler and no
+			// layout read at all. `.appear()` stays as the fallback for engines
+			// without IO, so the reveal behaviour is unchanged either way.
+			var revealProgress = function () {
+				if (progressBar.data('buaRevealed')) { return; }
+				progressBar.data('buaRevealed', true);
 				dataToggleTooTip.tooltip({
 					trigger: 'manual'
 				}).tooltip('show');
@@ -68,7 +219,23 @@ $(document).ready(function(){
 					var each_bar_width = $(this).attr('aria-valuenow');
 					$(this).width(each_bar_width + '%');
 				});
-			});
+			};
+			if (window.IntersectionObserver) {
+				var progressObserver = new window.IntersectionObserver(function (entries, observer) {
+					for (var i = 0; i < entries.length; i++) {
+						if (entries[i].isIntersecting) {
+							observer.disconnect();
+							revealProgress();
+							return;
+						}
+					}
+				}, { threshold: 0.01 });
+				progressBar.each(function () {
+					progressObserver.observe(this);
+				});
+			} else {
+				progressBar.appear(revealProgress);
+			}
 		}
 	
 	// 4. client carousel (now a custom 3D coverflow slider, see the

@@ -257,7 +257,31 @@
         window.P3D = {
             layers: layers,
             state: state,
-            refresh: function () { measure(); schedule(); }
+            refresh: function () { measure(); schedule(); },
+            /* astra3d.js takes over the stage when WebGL is available (it is a
+               deferred script, so this driver may already have started) and calls
+               destroy(); if WebGL is later lost it calls revive(). Without the
+               handover BOTH drivers animated the same stage, and this one kept
+               writing transforms - on layers hidden by `.p3d-camera{display:none}`
+               - into every scroll frame the WebGL scene was already filling. */
+            destroy: function () {
+                state.frozen = true;
+                if (state.rafId) { caf(state.rafId); state.rafId = 0; }
+                window.removeEventListener('scroll', onScroll);
+                window.removeEventListener('resize', onResize);
+                window.removeEventListener('orientationchange', onResize);
+                window.removeEventListener('mousemove', onPointer);
+            },
+            revive: function () {
+                state.frozen = false;
+                state.scroll = state.scrollTarget = readScroll();
+                window.addEventListener('scroll', onScroll, { passive: true });
+                window.addEventListener('resize', onResize, false);
+                window.addEventListener('orientationchange', onResize, false);
+                window.addEventListener('mousemove', onPointer, false);
+                measure();
+                if (reducedMotion()) { freeze(); } else { schedule(); }
+            }
         };
     }
 

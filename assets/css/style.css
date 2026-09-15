@@ -70,9 +70,40 @@ ul li {
 select,input,textarea,button{box-shadow:none;outline:0!important;}
 button {background: transparent;border: 0;}
 
-html,body{
+html {
+    /* --nav-h = the fixed navbar's height + the JS gap in custom.js (NAV_GAP).
+       It is the fallback offset for the browser's OWN hash navigation (deep
+       link, reload-at-#hash, keyboard/JS-disabled), which never runs
+       custom.js. Both mechanisms live in one token so they cannot drift. */
+    --nav-h: 206px;
     height: 100%;
+    position: relative;
+}
+
+body {
+    /* ROOT-CAUSE FIX - "clicking a header link does not scroll to the right
+       content". This used to be `html, body { height: 100% }`. Pinning body to
+       the viewport height while it also had `overflow-x: hidden` (below, which
+       makes overflow-y compute to auto) turned BODY into the scroll container:
+       body was clamped to 900px with ~7200px of content overflowing inside it,
+       so documentElement.scrollHeight stayed at the viewport height. Effects:
+       the document itself could not scroll (every native `#anchor` jump - the
+       header CTA, hero CTAs, showcase/footer links - silently did nothing),
+       and `window` scroll events never fired (dead sticky navbar, dead
+       back-to-top button, frozen parallax). body now grows with its content, so
+       the PAGE scrolls normally while still being at least viewport-tall. */
+    height: auto;
+    min-height: 100%;
 	position: relative;
+}
+
+/* Every in-page anchor target reserves the fixed navbar's height, so a native
+   hash jump lands the section heading just BELOW the header instead of behind
+   it - the CSS half of the custom.js offset (same --nav-h token). */
+section[id],
+[id="about"],
+[id="portfolio"] {
+    scroll-margin-top: var(--nav-h);
 }
 [placeholder]:focus::-webkit-input-placeholder {
   -webkit-transition: opacity 0.3s 0.3s ease; 
@@ -1081,8 +1112,22 @@ a.contact-btn {
 /* ---------------------------------------------
    1. Base / typography / a11y
 --------------------------------------------- */
+/* SCROLL JERK: a global `scroll-behavior: smooth` here fights the programmatic
+   scrolling this page already owns. assets/js/custom.js animates
+   `$('html, body').animate({ scrollTop: … }, 900, 'easeInOutExpo')` for the
+   header links / CTAs / footer links, re-snaps the landing in `align()` and the
+   "return to top" button animates over 1500ms. Every one of those writes is a
+   programmatic scroll of the SAME scroller, so with the native smooth behaviour
+   live the browser starts its own smooth-scroll animation on top of the jQuery
+   one: the two curves fight for the scroll position and the page visibly
+   stutters/jerks mid-flight (measured before the fix: a programmatic jump was
+   re-timed by the compositor instead of following the JS curve).
+   JS owns programmatic scrolling, so the native behaviour is `auto` - the smooth
+   landing is unchanged (jQuery animates it), and a browser-native hash jump
+   (deep link, JS disabled) still clears the fixed navbar through
+   `scroll-margin-top: var(--nav-h)` below. */
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     -webkit-text-size-adjust: 100%;
 }
 

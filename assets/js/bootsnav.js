@@ -11,7 +11,50 @@
 
 (function ($) {
 	"use strict";
-    
+
+    /* ------------------------------------------------------------------------
+       Scroll cost. Three independent `$(window).on("scroll")` handlers used to
+       run per wheel event, each doing its own live `$(window).scrollTop()` read
+       AND toggling a class on the fixed navbar whether or not the state had
+       changed (a redundant add/removeClass re-invalidates the style - and so
+       repaints the blurred backdrop - of the fixed navbar once per event).
+
+       They now share ONE passive listener that is coalesced into a single rAF
+       tick and reads the scroll position once per frame, so a wheel burst costs
+       one pass per frame instead of one jQuery dispatch + position read per
+       event. A subscriber is only notified when the position actually changed.
+    ------------------------------------------------------------------------ */
+    var scrollSubscribers = [],
+        scrollFrameId = 0,
+        lastScrollPos = -1;
+
+    function runScrollSubscribers() {
+        scrollFrameId = 0;
+        var y = window.pageYOffset ||
+            (document.documentElement && document.documentElement.scrollTop) ||
+            (document.body && document.body.scrollTop) || 0;
+        if (y === lastScrollPos) { return; }
+        lastScrollPos = y;
+        for (var i = 0; i < scrollSubscribers.length; i++) { scrollSubscribers[i](y); }
+    }
+
+    function scheduleScrollFrame() {
+        if (scrollFrameId) { return; }
+        scrollFrameId = (window.requestAnimationFrame || function (cb) {
+            return window.setTimeout(cb, 16);
+        })(runScrollSubscribers);
+    }
+
+    function onWindowScroll(handler) {
+        scrollSubscribers.push(handler);
+        if (scrollSubscribers.length > 1) { return; }
+        if (window.addEventListener) {
+            window.addEventListener('scroll', scheduleScrollFrame, { passive: true });
+        } else if (window.attachEvent) {
+            window.attachEvent('onscroll', scheduleScrollFrame);
+        }
+    }
+
     var bootsnav = {
         initialize: function() {
             this.event();
@@ -149,12 +192,15 @@
             // Navbar Fixed
             // ------------------------------------------------------------------------------ //
             if( getNav.hasClass("no-background")){
-                $(window).on("scroll", function(){
-                    var scrollTop = $(window).scrollTop();
+                onWindowScroll(function(scrollTop){
+                    // guarded class writes: re-applying the class the element
+                    // already has still invalidates style on the fixed, blurred
+                    // navbar - once per scroll event
+                    var $fixed = $(".navbar-fixed");
                     if(scrollTop >34){
-                        $(".navbar-fixed").removeClass("no-background");
+                        if( $fixed.hasClass("no-background") ){ $fixed.removeClass("no-background"); }
                     }else {
-                        $(".navbar-fixed").addClass("no-background");
+                        if( !$fixed.hasClass("no-background") ){ $fixed.addClass("no-background"); }
                     }
                 });
             }
@@ -163,12 +209,12 @@
             // Navbar Fixed
             // ------------------------------------------------------------------------------ //
             if( getNav.hasClass("navbar-transparent")){
-                $(window).on("scroll", function(){
-                    var scrollTop = $(window).scrollTop();
+                onWindowScroll(function(scrollTop){
+                    var $fixed = $(".navbar-fixed");
                     if(scrollTop >34){
-                        $(".navbar-fixed").removeClass("navbar-transparent");
+                        if( $fixed.hasClass("navbar-transparent") ){ $fixed.removeClass("navbar-transparent"); }
                     }else {
-                        $(".navbar-fixed").addClass("navbar-transparent");
+                        if( !$fixed.hasClass("navbar-transparent") ){ $fixed.addClass("navbar-transparent"); }
                     }
                 });
             }
@@ -490,12 +536,11 @@
                 
                 // Windown on scroll
                 var getOffset = $(".wrap-sticky").offset().top;
-                $(window).on("scroll", function(){  
-                    var scrollTop = $(window).scrollTop();
+                onWindowScroll(function(scrollTop){
                     if(scrollTop > getOffset){
-                        getNav.addClass("sticked");
+                        if( !getNav.hasClass("sticked") ){ getNav.addClass("sticked"); }
                     }else {
-                        getNav.removeClass("sticked");
+                        if( getNav.hasClass("sticked") ){ getNav.removeClass("sticked"); }
                     }
                 });
             }   
