@@ -1169,27 +1169,47 @@ nav.navbar.bootsnav.no-background {
     background: rgba(6, 8, 18, 0.9) !important;
 }
 
-/* wordmark: gradient-clipped brand text (brand string itself untouched) */
+/* brand lockup: the hand-authored SVG (assets/logo/logo.svg) rendered as an
+   <img>. The aurora gradient wordmark now lives INSIDE the SVG, so this rule is
+   paint-only SIZING: no `background-clip: text` trick on the anchor and nothing
+   re-declared on :hover/:focus (layout on an interaction state is exactly what
+   broke the client cards - see the `a {}` reset at the top of this file).
+   19px + 40px image + 19px == the 78px row the gradient text used to occupy, so
+   the header/hero geometry does not move. */
 .navbar-header a.navbar-brand,
 .navbar-header a.navbar-brand:hover,
 .navbar-header a.navbar-brand:focus {
-    font-family: var(--font-display);
-    font-size: clamp(15px, 2.4vw, 19px);
-    font-weight: 600;
-    letter-spacing: 0;
-    text-transform: none;
-    padding: 30px 0 48px;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent !important;
-    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    /* Bootstrap's .navbar-brand pins `height: 50px`; release it so the box is
+       driven by this padding + the image instead of an overflowing content box. */
+    height: auto;
+    padding: 19px 0;
+    background: none;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    color: var(--text-muted);
+    -webkit-text-fill-color: currentColor;
     /* Bootstrap's fluent navbar sets a negative offset on the brand inside a
-       container; neutralize it so the wordmark stays within its parent box.
+       container; neutralize it so the lockup stays within its parent box.
        `!important` outranks `.navbar > .container .navbar-brand` so the QA
        parent-overflow check stays clean. */
     margin-left: 0 !important;
     float: none;
+}
+
+/* the anchor is inline-block inside the .navbar-header line box; `vertical-align:
+   top` keeps that row at exactly the image height. Without it the parent
+   line-box descent adds ~9px and pushes the whole page down. */
+.navbar-header a.navbar-brand {
+    vertical-align: top;
+}
+
+/* the lockup scales by height and keeps the SVG's intrinsic 268:56 ratio */
+.navbar-header a.navbar-brand > img.navbar-brand__logo {
+    display: block;
+    height: 40px;
+    width: auto;
+    max-width: none;
 }
 
 nav.navbar.bootsnav ul.nav > li > a {
@@ -2646,6 +2666,9 @@ nav.navbar.bootsnav ul.nav > li.nav-whatsapp > a:focus-visible .whatsapp-cta {
     box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.55), 0 8px 26px rgba(37, 211, 102, 0.5);
 }
 
+.single-contact-btn {
+    text-align: center;
+}
 /* ---------------------------------------------------------------
    Overflow guard: the legacy timeline/container blocks
    (.about-content, .education-horizontal-timeline, .experience-content,

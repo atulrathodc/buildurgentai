@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="BuildUrgent AI" focusable="false">
+  <title>BuildUrgent AI</title>
+  <desc>BuildUrgent AI mark: an "A" drawn from connected agent nodes that meet at an urgent spark.</desc>
+  <defs>
+    <linearGradient id="buaMarkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.62" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#d946ef"/>
+    </linearGradient>
+  </defs>
+  <!-- the two "A" legs: node edges of the agent graph -->
+  <g fill="none" stroke="url(#buaMarkGrad)" stroke-linecap="round">
+    <path d="M24 16 9.5 41" stroke-width="6"/>
+    <path d="M24 16 38.5 41" stroke-width="6"/>
+    <path d="M15.9 30H32.1" stroke-width="5"/>
+  </g>
+  <!-- hub node: the orchestrator sitting on the crossbar -->
+  <circle cx="24" cy="30" r="3.2" fill="#eaf2ff"/>
+  <!-- urgent spark at the apex -->
+  <path fill="url(#buaMarkGrad)" d="M24 3.5c.9 3.4 2.6 5.1 6 6-3.4.9-5.1 2.6-6 6-.9-3.4-2.6-5.1-6-6 3.4-.9 5.1-2.6 6-6z"/>
+</svg>

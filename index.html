@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg" />
     <meta name="theme-color" content="#05060f" />
     <meta name="description"
         content="BuildUrgent AI is the agentic AI platform for production workflows: orchestrate AI agents, connect your systems, and ship reliable AI automation with enterprise-grade security." />
@@ -36,8 +37,9 @@
     <!-- title of site -->
     <title>BuildUrgent AI — Agentic AI platform for real work</title>
 
-    <!-- For favicon png -->
-    <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png" />
+    <!-- Brand favicon (scalable): assets/logo/favicon.svg. The /favicon.ico and
+         /logo192.png fallbacks above stay in place for legacy browsers. -->
+    <link rel="shortcut icon" type="image/svg+xml" href="assets/logo/favicon.svg" />
 
     <!--font-awesome.min.css-->
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -159,7 +161,14 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand" href="index.html">BuildUrgent AI</a>
+                        <!-- Brand lockup: the hand-authored SVG at assets/logo/logo.svg.
+                             The aurora gradient wordmark lives INSIDE the SVG, so the
+                             anchor itself is paint-only (see .navbar-header a.navbar-brand
+                             in assets/css/style.css). -->
+                        <a class="navbar-brand" href="index.html" aria-label="BuildUrgent AI — ai.buildurgent.com">
+                            <img class="navbar-brand__logo" src="assets/logo/logo.svg" alt="BuildUrgent AI" width="268"
+                                height="56" />
+                        </a>
                     </div><!--/.navbar-header-->
                     <!-- End Header Navigation -->
 
@@ -264,7 +273,7 @@
                                 <div class="col-sm-4">
                                     <div class="single-about-add-info">
                                         <h3>email</h3>
-                                        <p>atulrathodc@gamil.com</p>
+                                        <p>hello@buildurgent.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -1092,10 +1101,19 @@
                                 <p>Bring one workflow — we will show you the agents, tools, guardrails and pilot plan
                                     that get it into production.</p>
                                 <div class="single-contact-btn">
-                                    <a class="contact-btn"
-                                        href="https://mail.google.com/mail/?view=cm&fs=1&to=atulrathodc@gmail.com"
-                                        target="_blank" rel="noopener noreferrer">
+                                    <a class="contact-btn" href="mailto:hello@buildurgent.com" target="_blank"
+                                        rel="noopener noreferrer">
                                         book a demo
+                                    </a>
+                                </div><!--/.single-contact-btn-->
+                                <div class="single-contact-btn">
+                                    <a href="https://wa.me/917263932000?text=Hi%20Atul%2C%20I%27d%20like%20to%20work%20with%20you."
+                                        target="_blank" rel="noopener noreferrer"
+                                        aria-label="Chat with Atul on WhatsApp (opens in a new tab)">
+                                        <span class="whatsapp-cta">
+                                            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                                            <span class="whatsapp-cta__label">WhatsApp</span>
+                                        </span>
                                     </a>
                                 </div><!--/.single-contact-btn-->
                                 <ul>
@@ -1117,7 +1135,7 @@
                                 <div class="contact-add-info">
                                     <div class="single-contact-add-info">
                                         <h3>email</h3>
-                                        <p>atulrathodc@gmail.com</p>
+                                        <p>hello@buildurgent.com</p>
                                     </div>
                                 </div>
                             </div><!--/.contact-adress-->
