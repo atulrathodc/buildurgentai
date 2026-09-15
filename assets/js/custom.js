@@ -83,6 +83,16 @@ $(document).ready(function(){
 		// and opens in a new tab. Must run after jQuery + the jsSocials script
 		// (both loaded before custom.js). Wrap in try/catch so a CDN hiccup can
 		// never break the rest of the page.
+		//
+		// LinkedIn is OVERRIDDEN here (not jsSocials' built-in network): jsSocials
+		// 1.5.0's built-in handler builds the DEPRECATED
+		// `https://www.linkedin.com/shareArticle?mini=true&url=...` endpoint, which
+		// LinkedIn no longer honors and opens an EMPTY panel (no title / image / URL
+		// preview). The modern endpoint only takes a `url` parameter:
+		// `https://www.linkedin.com/sharing/share-offsite/?url=<encodedUrl>`.
+		// Because the custom entry keeps `share: 'linkedin'`, jsSocials still emits
+		// `.jssocials-share-linkedin`, so the flat-theme styling and the
+		// `.share-widget__link--linkedin` color still apply.
 		if ($('#share-socials').length) {
 			try {
 				$('#share-socials').jsSocials({
@@ -91,7 +101,14 @@ $(document).ready(function(){
 					shares: [
 						{ share: 'twitter', label: 'X / Twitter' },
 						{ share: 'facebook', label: 'Facebook' },
-						{ share: 'linkedin', label: 'LinkedIn' },
+						{
+							share: 'linkedin',
+							label: 'LinkedIn',
+							logo: 'fa fa-linkedin',
+							shareUrl: function () {
+								return 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href);
+							}
+						},
 						{ share: 'whatsapp', label: 'WhatsApp' }
 					]
 				});
