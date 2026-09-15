@@ -2395,7 +2395,11 @@ section.clients {
     color: var(--text-muted) !important;
     /* no `transform` — these icons are floated in a row, so any lift on hover
        visibly breaks their alignment (see below) */
-    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+    /* `background` (not just background-color) is transitioned so the hover
+       gradient fades in smoothly instead of snapping in — snapping between the
+       flat --surface color and the --grad image is what caused the on-hover
+       flicker. */
+    transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
 }
 
 /* hover: fill + colour only. The old `translateY(-2px)` raised each floated
@@ -2881,13 +2885,14 @@ body {
     font-weight: 600;
     font-size: 13px;
     letter-spacing: 0.03em;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    /* paint-only hover (no transform): a translateY lift mid-flex-column
+       nudges every sibling in the drawer, which reads as flicker. */
+    transition: opacity 0.2s ease;
 }
 
 .share-widget__link:hover,
 .share-widget__link:focus {
-    opacity: 0.9;
-    transform: translateY(-1px);
+    opacity: 0.85;
     color: #fff !important;
 }
 
