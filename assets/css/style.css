@@ -810,8 +810,8 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     
 }
 .single-contact-btn:hover{
-    background: #9f00ff;
-    border: 1px solid #9f00ff;
+    /* background: #9d00ff17; */
+    /* border: 1px solid #9f00ff; */
     box-shadow: 0 5px 20px rgba(0,0,0,.2);
 }
 
