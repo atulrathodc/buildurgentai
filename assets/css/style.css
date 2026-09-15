@@ -1,0 +1,2669 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+*{
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	box-sizing:border-box;
+}
+body{
+	font-family: 'Poppins', sans-serif;
+	font-size:16px;
+	color: #676a81;
+	background: #fff;
+    max-width:1920px;
+    margin:0 auto;
+	overflow-x:hidden;
+}
+
+/* ROOT-CAUSE FIX — the card "loses its flex on hover" bug.
+   `display:inline-block` used to be declared on `a,a:hover,a:active,a:focus`.
+   A pseudo-class counts as a CLASS in specificity, so `a:hover` is (0,1,1) and
+   it OUTRANKED component rules such as `.client-3d__tile { display:flex }`
+   (0,1,0): the moment the pointer entered a client card the anchor was
+   re-laid-out from `flex` to `inline-block`, so its flex children (mark / name /
+   meta) collapsed out of the centred column. `display:inline-block` now lives on
+   the bare `a` selector (0,0,1) only — component rules win at rest AND on hover,
+   and no interaction state re-declares layout. */
+a {
+	display:inline-block;
+}
+
+a,
+a:hover,
+a:active,
+a:focus {
+	text-decoration:none;
+	color: #6a708e;
+	font-size:16px;
+	padding:0;
+}
+h1,h2,h3,h4,h5,h6 { 
+	margin: 0;
+	color:#43485c;
+    font-size: 16px;
+	font-family: 'Poppins', sans-serif;
+	text-transform: capitalize;
+}
+p {
+	margin: 0;
+	line-height:1.8;
+	color:#43485c;
+	font-size:14px;
+	font-family: 'Poppins', sans-serif;
+}
+img{border:none;max-width:100%; height:auto;}
+ul{
+	padding: 0;
+    margin: 0 auto;
+    list-style: none;
+}
+ul li {
+	list-style: none;
+	
+}
+select,input,textarea,button{box-shadow:none;outline:0!important;}
+button {background: transparent;border: 0;}
+
+html,body{
+    height: 100%;
+	position: relative;
+}
+[placeholder]:focus::-webkit-input-placeholder {
+  -webkit-transition: opacity 0.3s 0.3s ease; 
+  -moz-transition: opacity 0.3s 0.3s ease; 
+  -ms-transition: opacity 0.3s 0.3s ease; 
+  -o-transition: opacity 0.3s 0.3s ease; 
+  transition: opacity 0.3s 0.3s ease; 
+  opacity: 0;
+}
+
+.fix{position: relative;clear: both;}
+/*=============Style css=========*/
+
+/*-------------------------------------
+        2. Header
+--------------------------------------*/
+.top-area {
+    position: relative;
+    z-index: 9999;
+}
+@media (min-width: 1024px){}
+nav.navbar.bootsnav.no-background {
+    background-color: #fff;
+    border: none;
+}
+
+nav.navbar.bootsnav {
+    background-color: #fff;
+    border-bottom: transparent;
+    box-shadow: 0 3px 15px rgba(0,0,0,.2);
+}
+
+/*.navbar-brand*/
+.navbar-header a.navbar-brand,.navbar-header a.navbar-brand:hover,.navbar-header a.navbar-brand:focus {
+    display: inline-block;
+    color: #d92cf9;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 33px 0px 57px;
+    text-transform: uppercase;
+}
+/*.navbar-brand*/
+
+/*.nav li*/
+nav.navbar.bootsnav ul.nav > li > a {
+    font-size: 16px;
+    font-weight: 400;
+    text-transform:uppercase;
+    -webkit-transition: 0.3s linear; 
+    -moz-transition: 0.3s linear; 
+    -ms-transition: 0.3s linear; 
+    -o-transition: 0.3s linear; 
+    transition: 0.3s linear;
+}
+nav.navbar.bootsnav ul.nav > li > a {padding: 35px 20px;}
+nav.navbar.bootsnav ul.nav > li > a:hover,nav.navbar.bootsnav ul.nav > li > a:focus,nav.navbar.bootsnav ul.nav > li.active>a{color: #d92cf9;}
+
+nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after {
+    content: "";
+}
+nav.navbar.bootsnav ul.nav > li.dropdown span {
+    font-size: 8px;
+    margin-left: 15px;
+}
+.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li > a {color:#6a708e;}
+.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li > a:hover,.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li > a:focus,.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li.active>a{color: #d92cf9;}
+/*.nav li*/
+
+
+
+/*.menu-ui-design*/
+.menu-ui-design{overflow-y:scroll;height: 350px;}
+.menu-ui-design::-webkit-scrollbar {
+    width:5px;
+}
+.menu-ui-design::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 8px #000;
+}
+.menu-ui-design::-webkit-scrollbar-thumb {
+  background-color: #d92cf9;
+}
+/*.menu-ui-design*/
+
+
+
+/*.navbar-toggle */
+nav.navbar.bootsnav .navbar-toggle {
+    position: relative;
+    background-color: transparent;
+    border: 1px solid #d92cf9;
+    padding: 10px;
+    top: 0;
+}
+nav.navbar.bootsnav .navbar-toggle i{color: #d92cf9;}
+/*.navbar-toggle */
+
+
+
+/*-------------------------------------
+        3.  Welcome-hero
+--------------------------------------*/
+.welcome-hero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+    background:url(../images/about/welcome-banner.jpg)no-repeat;
+    background-size:cover;
+    background-position: center;
+    height:890px;
+}
+.welcome-hero:before{
+    position:absolute;
+    content: " ";
+    top:0;
+    left:0;
+    background:rgba(31,44,108,.65);
+    width:100%;
+    height:100%;
+}
+
+/*.header-text-area*/
+.header-text h2 {
+    color: #fff;
+    font-size: 54px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+.header-text h2 span {color: #d92cf9;}
+.header-text p {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 30px 0 60px;
+    letter-spacing: 1px;
+}
+.header-text a {
+    width: 200px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 3px;
+    text-transform: capitalize;
+    color: #fff;
+    background: #b636ff;
+    border:1px solid #b636ff;
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+    -webkit-transition: 0.3s linear; 
+    -moz-transition: 0.3s linear; 
+    -ms-transition: 0.3s linear; 
+    -o-transition: 0.3s linear; 
+    transition: 0.3s linear;
+}
+.header-text a:hover{ box-shadow: 0 5px 20px rgba(0,0,0,.4);background:#9f00ff;border: 1px solid #9f00ff;}
+/*.header-text-area*/
+
+/*-------------------------------------
+        4.  About
+--------------------------------------*/
+.about {padding: 50px 0 100px;}
+.about-content {padding-top: 100px;}
+/*.single-about-txt*/
+.single-about-txt h3 {
+    font-size:18px;
+    color: #3c4258;
+    text-transform: initial;
+    line-height: 1.8;
+}
+.single-about-txt p {
+    font-size: 16px;
+    color: #999fb3;
+    padding: 35px 0 43px;
+    border-bottom: 1px solid #999fb3;
+}
+.single-about-add-info {
+    margin: 35px 0;
+}
+.single-about-add-info h3 {
+    color: #636a82;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+.single-about-add-info p {font-weight:  300;border:  0;padding: 0;margin-top: 3px;}
+/*.single-about-txt*/
+
+/*.single-about-img */
+.single-about-img{position: relative;box-shadow: 0 5px 20px rgba(14,25,80,.30);overflow: hidden;}
+.single-about-img:before {
+    position:  absolute;
+    content: " ";
+    top: 0;
+    left:  0;
+    width: 109%;
+    height:  100%;
+    background: rgba(31,44,108,1);
+}
+.single-about-img img {
+    max-width: 500px;
+    height: 468px;
+}
+.about-list-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 109%;
+    height: 90px;
+    background: #1f2c6c;
+}
+/*.ab-list-icon */
+.about-list-icon ul {
+    display: flex;
+}
+.about-list-icon  ul li a {
+    padding-right: 22px;
+    cursor:pointer;
+    color: #fff;
+}
+.about-list-icon ul li a {
+    cursor: pointer;
+    color: #fff;
+    display: inline-block;
+    border: 2px solid;
+    margin-left: 20px;
+    border-radius: 8px;
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+}
+.about-list-icon ul li a i {
+    margin-left: 6px;
+}
+/*.ab-list-icon */
+
+/*.single-about-img */
+
+/*-------------------------------------
+        5.  Education
+--------------------------------------*/
+
+.education {
+    background:  #f9fbfd;
+    padding-top:  50px;
+}
+.education-horizontal-timeline {
+    padding: 80px 0;
+}
+
+/*.education-horizontal-timeline*/
+.education-horizontal-timeline .col-sm-4 {padding:0 2px;}
+
+.single-horizontal-timeline .experience-time h3{text-transform: capitalize;}
+.single-horizontal-timeline .experience-time h3 span{text-transform:lowercase;}
+.single-horizontal-timeline .timeline-content h5 {margin: 15px 0;}
+.single-horizontal-timeline p {color: #999fb3;max-width: 335px;}
+
+/*.timeline-horizontal-border*/
+.timeline-horizontal-border {
+    display:  flex;
+    align-items: center;
+    padding: 26px 0 30px;
+}
+.timeline-horizontal-border i {
+    font-size:  10px;
+    color: #d92cf9;
+    margin-right:  5px;
+}
+span.single-timeline-horizontal {
+    display:  inline-block;
+    background: #b2c1ce;
+    height:  1px;
+    width: 380px;
+}
+span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
+/*.timeline-horizontal-border*/
+
+/*.education-horizontal-timeline*/
+
+/*-------------------------------------
+        6.  Skills
+--------------------------------------*/
+.skills {
+    
+}
+.skill-content{padding: 50px 0 80px;}
+.single-skill-content{padding-top: 100px;}
+.section-heading h2 {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #e5ebf2;
+}
+.single-progress-txt {
+    display: flex;
+}
+.single-progress-txt h3 {
+    width: 10%;
+    color: #a606c3;
+    position: relative;
+    top: 6px;
+    left: 20px;
+}
+.barWrapper {
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+.progress {
+    border-radius:3px;
+    overflow: visible;
+    background: #e6ecf3;
+    height:8px;
+    margin-top: 15px;
+    width: 85%;
+    margin-bottom: 37px;
+}
+.progress-bar {
+   background: #b636ff;
+    border-radius: 3px;
+   -webkit-transition: width 1.5s ease-in-out;
+   -ms-transition: width 1.5s ease-in-out;
+   -moz-transition: width 1.5s ease-in-out;
+   -o-transition: width 1.5s ease-in-out;
+   transition: width 1.5s ease-in-out;
+}
+.tooltip{
+   position:relative;
+   float:right;
+}
+.tooltip > .tooltip-inner {
+   background-color: transparent;
+   padding: 1px 5px;
+   color: #b636ff;
+   font-weight: 500;
+   font-size: 12px;
+   border-radius: 0;
+}
+.popOver + .tooltip > .tooltip-arrow {
+   border-left: 6px solid transparent;
+   border-right: 6px solid transparent;
+   border-top: 6px solid #fff;
+   bottom: -1px;
+   transform: translateX(-50%);
+   margin-left: 0;
+}
+
+/*-------------------------------------
+        7. Experience
+-------------------------------------*/
+.experience {
+    padding: 50px 0 100px;
+    border-top: 1px solid #e5ebf2;
+}
+.experience-content {padding-top: 100px;}
+.single-timeline-box {margin-bottom: 75px;}
+
+/*experience-time*/
+.experience-time {
+    position: relative;
+}
+.experience-time h2 {
+    font-weight: 400;
+}
+.experience-time h3 {
+    font-size: 16px;
+    font-weight: 300;
+    color: #636a82;
+    margin-top: 14px;
+    text-transform: uppercase;
+}
+/*experience-time*/
+
+/*main-timeline*/
+.main-timeline{
+    position: relative;
+}
+.main-timeline:before{
+    content: "";
+    width: 2px;
+    height: 84%;
+    background: #b2c1ce;
+    position: absolute;
+    top: 1.5%;
+    left: 45.8%;
+    z-index: -1;
+}
+.main-timeline .timeline{
+    position: relative;
+}
+
+.timeline-content span>i, .experience-time span>i {
+    color: #d92cf9;
+    position: absolute;
+    font-size: 10px;
+    /* Sit on the timeline rule *inside* the parent box. A negative `left`
+       used to place the dot outside `.timeline`, which reads as content
+       clipped beyond its container (and breaks parent-overflow QA). */
+    left: 0;
+    z-index: 1;
+}
+/* The title dot lives in an inline `<span>`; make that span the positioning
+   context so the absolutely-positioned `<i>` resolves against it instead of
+   the far-away `.timeline` box. Without this the dot's rect sits outside the
+   span's own box and every parent-overflow check flags it. */
+.timeline-content h4.title > span,
+.experience-time h2 > span {
+    position: relative;
+    display: inline-block;
+}
+.timeline-content h4.title {
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.timeline-content h5 {
+    color: #636a82;
+    font-size: 14px;
+    font-weight: 300;
+    margin: 18px 0 20px;
+}
+.main-timeline .description {
+    font-size: 14px;
+    color: #999fb3;
+}
+.main-timeline .timeline-content.right{
+    float: right;
+    text-align: left;
+}
+.timeline-single-before:before {
+    content: '';
+    top: 57px;
+    left: -3px;
+    position: absolute;
+    width: 100%;
+    height:400px;
+    border-left:15px solid #fff;
+}
+
+.experience-time-responsive{display: none;}
+/*-------------------------------------
+        8. Profiles
+--------------------------------------*/
+.profiles {
+    padding:  50px 0 100px;
+    border:  1px solid #e5ebf2;
+}
+
+.profiles-content {padding-top: 100px;}
+.profiles-content .col-sm-3{padding:0;}
+.profile-txt {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.single-profile {
+    position: relative;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #b2c1ce;
+    overflow:hidden;
+    -webkit-transition:background 0.5s linear; 
+    -moz-transition:background 0.5s linear; 
+    -ms-transition:background 0.5s linear; 
+    -o-transition:background 0.5s linear; 
+    transition:background 0.5s linear;
+}
+.profile-icon-name {
+    text-transform: capitalize;
+    color: #636a82;
+    font-size: 16px;
+}
+.single-profile.profile-no-border{border-right:transparent;}
+.profile-border {
+    border-bottom: 1px solid #b2c1ce;
+}
+.single-profile-overlay{
+    display:flex;
+    align-items:center;
+    text-transform: capitalize;
+    justify-content:center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: " ";
+    width:100%;
+    height: 100%;
+    background: #d92cf9;
+    background: -moz-linear-gradient(left, #d92cf9 0%, #b636ff 100%);
+    background: -webkit-linear-gradient(left, #d92cf9 0%,#b636ff 100%);
+    background: linear-gradient(to right, #d92cf9 0%,#b636ff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d92cf9', endColorstr='#b636ff',GradientType=1 );
+    /* paint-only reveal. The old `transform: scale(0) -> scale(1)` grew this
+       FULL-SIZE box (its caption text included) up from zero, so the label
+       squashed/stretched while it appeared — the "disturbed card" glitch. A
+       0.96 -> 1 nudge + opacity reads as the same reveal with no geometry
+       distortion, and the transition list no longer tweenes EVERY property
+       (background/gradient-filter/position) for half a second. */
+    -webkit-transform:scale(.96);
+    -moz-transform:scale(.96);
+    -ms-transform:scale(.96);
+    -o-transform:scale(.96);
+    transform:scale(.96);
+    opacity:0;
+    pointer-events:none;
+    -webkit-transform-origin:center center;
+    transform-origin:center center;
+    -webkit-transition: -webkit-transform .35s ease, opacity .35s ease;
+    transition: transform .35s ease, opacity .35s ease;
+}
+/* `top` is already 0 on the base rule above, so the hover state only has to
+   change paint properties — nothing here can move the box or its neighbours.
+   `:focus-within` keeps the caption visible for keyboard users. */
+.single-profile:hover .single-profile-overlay,
+.single-profile:focus-within .single-profile-overlay{
+    -webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1);
+    -o-transform:scale(1);
+    transform:scale(1);
+    opacity:1;
+    pointer-events:auto;
+}
+.single-profile:hover .profile-icon-name,.single-profile:hover .profile-txt a>i{color: #fff;}
+.single-profile:hover .profile-border {border:transparent;}
+/*-------------------------------------
+        9. Portfolio
+--------------------------------------*/
+.portfolio {
+    padding:  50px 0 100px;
+    border:  1px solid #e5ebf2;
+}
+
+.portfolio-content {padding-top: 100px;}
+
+/* ---- .item ---- */
+.isotope:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.isotope .item {
+    position:relative;
+    overflow:hidden;
+    margin-bottom: 30px;
+}
+/*.item img*/
+.isotope .item img{
+    width:100%;
+    height:100%;
+    /* explicit property list: the old bare `transition: .5s` tweened EVERY
+       property (width/height/position included), so any stray reflow was
+       animated over half a second instead of snapping. */
+    -webkit-transition: -webkit-transform .5s ease;
+    transition: transform .5s ease;
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+}
+/* keep this zoom in sync with the section-10 rule (.06) so the cascade can
+   never resolve `.isotope .item:hover img` to two different scales. */
+.isotope .item:hover  img{
+    -webkit-transform:scale(1.06);
+    -moz-transform:scale(1.06);
+    -ms-transform:scale(1.06);
+    -o-transform:scale(1.06);
+    transform:scale(1.06);
+}/*.item img*/
+
+/*.isotope-overlay*/
+.isotope-overlay{
+    position:absolute;
+    /* pinned geometry: without `top`/`left` the browser used the static position,
+       which parked this box ~239px BELOW the tile (clipped away), and the hover
+       rule's `top:0` then yanked it up to the top in a single frame. */
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background:rgba(31,44,108,.5);
+    display:flex;
+    align-items:center;
+    text-transform: uppercase;
+    justify-content:center;
+    flex-direction:row;
+    /* paint-only reveal. The old `transform: scale(0) -> scale(1)` scaled the
+       FULL-SIZE caption container (its text too), so the caption squashed/stretched
+       while growing — the "disturbed card" glitch. No transform here at all now, so
+       the caption text can never distort. `pointer-events` keeps the resting-state
+       link from being an invisible touch target while still allowing focus. */
+    opacity:0;
+    pointer-events:none;
+    -webkit-transition: opacity .35s ease;
+    -moz-transition: opacity .35s ease;
+    -ms-transition: opacity .35s ease;
+    -o-transition: opacity .35s ease;
+    transition: opacity .35s ease;
+}
+.isotope-overlay a {
+    display: inline-block;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+}
+/* no `top`/`transform` on hover any more: the overlay is already pinned at
+   top:0 and only its opacity changes, so the caption fades in where it sits.
+   `:focus-within` keeps the caption visible when the link is keyboard-focused. */
+.isotope .item:hover .isotope-overlay,
+.isotope .item:focus-within .isotope-overlay{
+    opacity:1;
+    pointer-events:auto;
+}/*.isotope-overlay*/
+
+/*-------------------------------------
+        10. Clients
+--------------------------------------*/
+.clients {padding-top: 50px;}
+.clients-area {
+    display: flex;
+    align-items: center;
+    height: 250px;
+}
+.clients-area .item {padding: 0 25px;}
+
+.clients .clients-area .owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius:0;
+}
+
+/*-------------------------------------
+        11. Contact
+--------------------------------------*/
+.contact {
+    background: #f9fbfd;
+    padding: 50px 0 100px;
+}
+.single-contact-box {padding-top: 100px;}
+/* Contact form hidden on request (display:none) - address block stays visible */
+.contact-form {
+    display: none !important;
+}
+.contact-form  .form-group {
+    margin-bottom: 20px;
+    
+}
+.contact-form .form-control {
+    padding: 25px;
+    font-size: 14px;
+    border: 1px solid #fff;
+    border-radius: 0px;
+    box-shadow: none;
+    outline: 0!important;
+    background: #fff;
+    color: #636a82;
+    resize: none;
+}
+
+/*--contct button--*/
+.contact-form .single-contact-btn {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:50px;
+    text-transform:capitalize;
+    margin-top: 3px;
+    background: #b636ff;
+    border: 1px solid #b636ff;
+    cursor:pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+     -webkit-transition: .5s; 
+    -moz-transition:.5s; 
+    -ms-transition:.5s; 
+    -o-transition:.5s;
+    transition: .5s;
+}
+.contact-form .single-contact-btn .contact-btn ,
+.contact-form .single-contact-btn .contact-btn:focus {
+    margin-top:0px;
+    outline: 0 !important;
+    border:0;
+    color: #fff;
+    border-radius: 0px;
+    font-size:14px;
+    -webkit-transition: .5s; 
+    -moz-transition:.5s; 
+    -ms-transition:.5s; 
+    -o-transition:.5s;
+    transition: .5s;
+    
+}
+.single-contact-btn:hover{
+    background: #9f00ff;
+    border: 1px solid #9f00ff;
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+}
+
+/*--contct button--*/
+
+/* contact-adress */
+.contact-add-head h3 {
+    font-size:  24px;
+    color:  #3c4258;
+}
+.contact-add-head p {
+    font-size:  16px;
+    text-transform: capitalize;
+    color:  #636a82;
+    font-weight:  300;
+    margin-top:  6px;
+}
+/* contact-adress */
+
+/*.contact-add-info */
+.contact-add-info { margin: 42px 0 52px;}
+.single-contact-add-info h3 {
+    color:  #636a82;
+    font-weight:  500;
+}
+.single-contact-add-info p {
+    color:  #999fb3;
+    font-size:  16px;
+    margin-top:  18px;
+}
+.single-contact-add-info {
+    margin-bottom:  26px;
+}
+/*.contact-add-info */
+
+/*hm-foot-icon*/
+.hm-foot-icon {
+   
+}
+.hm-foot-icon ul li{float:left;}
+.hm-foot-icon ul li>a {
+    color: #636a82;
+    margin-right:18px;
+    -webkit-transition: .3s; 
+    -moz-transition:.3s; 
+    -ms-transition:.3s; 
+    -o-transition:.3s;
+    transition: .3s;
+}
+.hm-foot-icon ul li>a:hover{
+    color: #b636ff;
+}/*hm-foot-icon*/
+
+.hm-footer-copyright p{
+    color: #888ea5;
+    text-transform: capitalize;
+    padding: 38px 0;
+}
+.hm-footer-copyright p a {color: #888ea5;}
+/*===============================
+    Scroll Top
+===============================*/
+#scroll-Top  .return-to-top {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    display: none;
+    width: 40px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+    background:#b636ff;
+	border:1px solid #b636ff;
+	border-radius:50%;
+	-webkit-transition: .5s; 
+	-moz-transition:.5s; 
+	-ms-transition:.5s; 
+	-o-transition:.5s;
+    transition: .5s;
+	z-index: 2;
+}
+#scroll-Top  .return-to-top:hover {
+    background:#fff;
+    color: #b636ff;
+	border:1px solid #b636ff;
+}
+
+#scroll-Top  .return-to-top i{
+    position:relative;
+    bottom:0;
+
+}
+
+#scroll-Top  .return-to-top i{
+    position: relative;
+    animation-name: example;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-duration:1s;
+}
+@keyframes example {
+    0%   {bottom:0px;}
+    100%  {bottom:7px;}
+}
+
+
+/*=============================== */
+
+
+@keyframes animate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.box {
+    position: relative;
+    width: 35rem;
+    height: 35rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+.box::before {
+    content: '';
+    position: absolute;
+    inset: -1rem 11rem;
+    background: linear-gradient(315deg, #00ccff, #d400d4);
+    transition: 0.5s;
+    animation: animate 4s linear infinite;
+}
+.box:hover .content img {
+    opacity: 0;
+}
+.box::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    background: #171c28;
+    border-radius: 50%;
+    z-index: 1;
+}
+.box:hover::before{
+    inset: -2rem 0rem;
+}
+ .box .content {
+    position: absolute;
+    inset: 20px;
+    border: 5px solid #171c28;
+    z-index: 3;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.content h2{
+    font-family: 'Merriweather', serif;
+    position: relative;
+    font-size: 3rem;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: 'Merriweather', serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+.content span{
+    color: rgb(157, 157, 157);
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+    font-size: 1em;
+    font-family: 'Merriweather', serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+.content a{
+    font-family: 'Merriweather', serif;
+    position: relative;
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    background: #fff;
+    color: #070a1c;
+    border-radius: 500;
+    font-size: 1.25em;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.5s;
+    
+}
+/* NOTE: `.content a:hover` used to widen the label with `letter-spacing: 0.2em`.
+   Letter-spacing is a layout property, so hovering re-flowed the button and
+   re-centred it inside the circle (the card "got disturbed"). The hover state
+   is now declared once in the theme layer below with compositor-only props. */
+
+a.contact-btn {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+/* ==========================================================================
+   THEME OVERRIDE LAYER — "Midnight Aurora" design system
+   --------------------------------------------------------------------------
+   APPENDED (nothing above was rewritten): a complete re-skin delivered as an
+   override block. Every rule below only declares the properties it changes,
+   so all markup-driven selectors above keep working and reverting the look =
+   deleting this block.
+
+   WHY DARK: the 3-D parallax canvas behind the page (parallax3d.css) is
+   already dark (#05060f); the old template painted white sections on top of
+   it. This layer turns every section into a dark glass surface lit by a
+   cyan -> violet accent, so content and background share one design language.
+
+   Companion mobile rules live in responsive.css (loaded after this file).
+
+   0. Tokens            8. Experience
+   1. Base              9. Profiles
+   2. Header            10. Portfolio
+   3. Hero              11. Clients
+   4. Section shell     12. Contact
+   5. About             13. Footer + floating actions
+   6. Education         14. Cookie banner
+   7. Skills            15. Reduced motion
+   ========================================================================== */
+
+/* ---------------------------------------------
+   0. Tokens
+--------------------------------------------- */
+:root {
+    /* surfaces */
+    --bg-0: #05060f;
+    --bg-1: #0a0d1f;
+    --bg-2: #111634;
+    --surface: rgba(19, 24, 52, 0.58);
+    --surface-2: rgba(27, 33, 68, 0.72);
+    --border: rgba(146, 160, 255, 0.16);
+    --border-strong: rgba(146, 160, 255, 0.32);
+
+    /* text */
+    --text: #e9ecff;
+    --text-muted: #a7b0d0;
+    --text-dim: #7c86a8;
+
+    /* accents */
+    --accent: #22d3ee;
+    --accent-2: #8b5cf6;
+    --accent-3: #d946ef;
+    --accent-soft: #a78bfa;
+    --grad: linear-gradient(120deg, #22d3ee 0%, #8b5cf6 62%, #d946ef 100%);
+
+    /* spacing scale (4/8px multiples only) */
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 24px;
+    --sp-6: 32px;
+    --sp-7: 48px;
+    --sp-8: 64px;
+    --sp-9: 96px;
+
+    /* radii */
+    --r-sm: 8px;
+    --r-md: 16px;
+    --r-lg: 24px;
+    --r-pill: 999px;
+
+    /* elevation */
+    --sh-sm: 0 6px 18px rgba(0, 0, 0, 0.35);
+    --sh-glow: 0 18px 50px rgba(34, 211, 238, 0.18);
+
+    /* type */
+    --font-display: 'Space Grotesk', 'Poppins', -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Inter', 'Poppins', -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ---------------------------------------------
+   1. Base / typography / a11y
+--------------------------------------------- */
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text) !important;
+    background: transparent !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--text);
+    letter-spacing: -0.01em;
+}
+
+p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.75;
+    font-family: var(--font-body);
+}
+
+a,
+a:hover,
+a:active,
+a:focus {
+    color: var(--accent);
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+a:hover,
+a:focus {
+    color: #7dd3fc;
+}
+
+::selection {
+    background: rgba(139, 92, 246, 0.4);
+    color: #fff;
+}
+
+/* keyboard focus must stay visible on dark surfaces */
+a:focus-visible,
+button:focus-visible,
+.navbar-toggle:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--r-sm);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #070a18;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#22d3ee, #8b5cf6);
+    border: 2px solid #070a18;
+    border-radius: var(--r-pill);
+}
+
+section {
+    position: relative;
+}
+
+/* ---------------------------------------------
+   2. Header + navigation
+--------------------------------------------- */
+nav.navbar.bootsnav,
+nav.navbar.bootsnav.no-background {
+    background: rgba(8, 10, 24, 0.72) !important;
+    border-bottom: 1px solid var(--border) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+}
+
+/* sticky state (jquery.sticky adds .is-sticky) gets a touch more opacity */
+.sticky-wrapper.is-sticky nav.navbar.bootsnav {
+    background: rgba(6, 8, 18, 0.9) !important;
+}
+
+/* wordmark: gradient-clipped brand text (brand string itself untouched) */
+.navbar-header a.navbar-brand,
+.navbar-header a.navbar-brand:hover,
+.navbar-header a.navbar-brand:focus {
+    font-family: var(--font-display);
+    font-size: clamp(15px, 2.4vw, 19px);
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 30px 0 48px;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent;
+    /* Bootstrap's fluent navbar sets a negative offset on the brand inside a
+       container; neutralize it so the wordmark stays within its parent box.
+       `!important` outranks `.navbar > .container .navbar-brand` so the QA
+       parent-overflow check stays clean. */
+    margin-left: 0 !important;
+    float: none;
+}
+
+nav.navbar.bootsnav ul.nav > li > a {
+    position: relative;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--text-muted) !important;
+}
+
+/* animated gradient underline for hover / current section */
+nav.navbar.bootsnav ul.nav > li > a::after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 24px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--grad);
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: left center;
+    transform-origin: left center;
+    -webkit-transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+nav.navbar.bootsnav ul.nav > li > a:hover,
+nav.navbar.bootsnav ul.nav > li > a:focus,
+nav.navbar.bootsnav ul.nav > li.active > a,
+.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li > a:hover,
+.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li > a:focus,
+.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li.active > a {
+    color: #ffffff !important;
+}
+
+nav.navbar.bootsnav ul.nav > li > a:hover::after,
+nav.navbar.bootsnav ul.nav > li > a:focus::after,
+nav.navbar.bootsnav ul.nav > li.active > a::after {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li > a {
+    color: var(--text-muted);
+}
+
+/* hamburger */
+nav.navbar.bootsnav .navbar-toggle {
+    background: var(--surface) !important;
+    border: 1px solid var(--border-strong) !important;
+    border-radius: var(--r-sm) !important;
+    padding: 12px !important;
+}
+nav.navbar.bootsnav .navbar-toggle:hover,
+nav.navbar.bootsnav .navbar-toggle:focus {
+    background: rgba(34, 211, 238, 0.16) !important;
+    border-color: var(--accent) !important;
+}
+nav.navbar.bootsnav .navbar-toggle i {
+    color: var(--text) !important;
+}
+
+.menu-ui-design::-webkit-scrollbar-thumb {
+    background-color: var(--accent-2);
+}
+.menu-ui-design::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 8px #05060f;
+}
+
+/* ---------------------------------------------
+   3. Hero
+--------------------------------------------- */
+.welcome-hero {
+    background: transparent !important;
+    height: auto !important;
+    min-height: clamp(600px, 94vh, 940px);
+    padding: 170px 0 120px;
+}
+
+/* light scrim so the headline always reads over the animated background */
+.welcome-hero:before {
+    background:
+        radial-gradient(70% 60% at 50% 6%, rgba(34, 211, 238, 0.18), rgba(5, 6, 15, 0) 62%),
+        linear-gradient(180deg, rgba(5, 6, 15, 0.74) 0%, rgba(5, 6, 15, 0.34) 46%, rgba(5, 6, 15, 0.88) 100%) !important;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    margin-bottom: var(--sp-5);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: rgba(233, 236, 255, 0.85);
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.hero-badge i {
+    font-size: 7px;
+    color: #34d399;
+    animation: badge-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+    0%, 100% { opacity: 0.45; transform: scale(0.8); }
+    50%      { opacity: 1;    transform: scale(1.2); }
+}
+
+/* ---- hero headline (static text) -------------------------------------------
+   The headline is plain, un-animated text: no per-letter 3-D entrance, no
+   WebGL typing overlay and no pointer parallax (those hero-text animation
+   scripts were removed). It renders immediately and stays put -
+   the only styling left below is the type scale, the centring and the paint on
+   the `.hero-name` spans. */
+
+/* ---- headline centring (the block that must stay in the middle) -----------
+   The <h2 class="hero-title"> is a THREE-LINE centred block
+   ("BuildUrgent AI." / "Ship AI agents that" / "do real work."). Pinning the
+   alignment (and symmetric
+   inline margins, capped to the container) on the heading itself makes every
+   line share the SAME centred axis instead of inheriting the aligned box of
+   the Bootstrap `.text-center` column, whose line box is not necessarily
+   symmetric for the shorter lines.
+   This is STATIC layout - nothing here is ever toggled. */
+.hero-title {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    text-indent: 0;
+}
+
+/* The name keeps the aurora paint it always had, but PAINT ONLY: no transform,
+   no animation, nothing that moves or delays it. */
+.hero-title .hero-name {
+    background-image: linear-gradient(115deg,
+            #67e8f9 0%, #22d3ee 15%, #ecfeff 30%, #a78bfa 52%,
+            #8b5cf6 68%, #d946ef 86%, #22d3ee 100%);
+    background-size: 260% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 6px 22px rgba(34, 211, 238, 0.3)) drop-shadow(0 2px 12px rgba(139, 92, 246, 0.36));
+}
+
+/* The template's custom.js applies animate.css `animated fadeInUp` plus an
+   inline `opacity: 0` to `.header-text h2` on window load. The hero headline is
+   static text now, so that entrance is cancelled here and the inline opacity is
+   released: the copy is painted at full opacity with the page and can never be
+   left invisible if the animation does not run. */
+.header-text h2.animated {
+    animation: none !important;
+    opacity: 1 !important;
+}
+
+.header-text {
+    /* the hero type band. No 3-D transforms any more (the headline is static),
+       but keep the clip so the display type can never widen the page. */
+    overflow: hidden;
+}
+
+.header-text h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    /* explicit centring of the headline block (see `.hero-title` above): the
+       heading owns the centred line box for all three lines instead of
+       inheriting the column's text-align. Static layout only - the headline is
+       never transformed, promoted or animated. */
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    text-indent: 0;
+    font-size: clamp(2.3rem, 6.4vw, 4.5rem);
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+    color: #ffffff;
+    text-shadow: 0 14px 44px rgba(0, 0, 0, 0.55), 0 0 30px rgba(34, 211, 238, 0.14);
+}
+
+/* (The per-glyph hero animation used to live here: word gather, per-letter
+   3-D type-in, idle float/wave, specular sheen and pointer parallax. The
+   headline is plain static text now, those animation scripts are deleted and
+   none of those keyframes/rules are needed.) */
+
+.header-text p {
+    color: rgba(233, 236, 255, 0.75);
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    margin: var(--sp-5) 0 var(--sp-6);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+    justify-content: center;
+    align-items: center;
+}
+
+/* one button system for the hero (primary = gradient, ghost = glass) */
+.header-text a {
+    width: auto !important;
+    height: auto !important;
+    line-height: 1.2 !important;
+    padding: 16px 30px !important;
+    border-radius: var(--r-pill) !important;
+    background: var(--grad) !important;
+    border: 1px solid transparent !important;
+    color: #05060f !important;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 14px 34px rgba(34, 211, 238, 0.22), 0 8px 26px rgba(139, 92, 246, 0.28) !important;
+    /* no `transform` — hero buttons must not move on hover (see below) */
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+/* no geometry on hover: gradient + border + glow only, so the CTA keeps its
+   200x60 box and the neighbouring ghost button never moves. */
+.header-text a:hover,
+.header-text a:focus {
+    background: var(--grad) !important;
+    border-color: transparent !important;
+    box-shadow: 0 18px 42px rgba(34, 211, 238, 0.32), 0 10px 32px rgba(139, 92, 246, 0.36) !important;
+}
+
+.header-text a.hero-cta--ghost {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid var(--border-strong) !important;
+    color: var(--text) !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.header-text a.hero-cta--ghost:hover,
+.header-text a.hero-cta--ghost:focus {
+    background: rgba(34, 211, 238, 0.14) !important;
+    border-color: var(--accent) !important;
+}
+
+/* ---------------------------------------------
+   4. Section shell + section headings
+--------------------------------------------- */
+.about {
+    padding: var(--sp-9) 0;
+}
+
+.education {
+    background: linear-gradient(180deg, rgba(17, 22, 52, 0.55), rgba(5, 6, 15, 0) 78%) !important;
+    padding-top: var(--sp-8);
+}
+
+.experience,
+.profiles,
+.portfolio {
+    border: 0 !important;
+    padding: var(--sp-9) 0;
+}
+
+.clients {
+    padding-top: var(--sp-8);
+}
+
+.contact {
+    background: linear-gradient(180deg, rgba(17, 22, 52, 0.5), rgba(5, 6, 15, 0) 76%) !important;
+    padding: var(--sp-9) 0 var(--sp-8);
+}
+
+.about-content,
+.skill-content,
+.experience-content,
+.profiles-content,
+.portfolio-content,
+.single-skill-content {
+    padding-top: var(--sp-7);
+}
+
+/* heading = kicker type + short gradient rule (was a full-width hairline) */
+.section-heading {
+    margin-bottom: var(--sp-6);
+    padding: 0 var(--sp-4);
+}
+
+.section-heading h2 {
+    display: inline-block;
+    position: relative;
+    padding-bottom: var(--sp-4);
+    border-bottom: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.4vw, 2.15rem);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--text);
+}
+
+.section-heading h2::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 64px;
+    height: 3px;
+    border-radius: var(--r-pill);
+    background: var(--grad);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    box-shadow: 0 0 18px rgba(34, 211, 238, 0.5);
+}
+
+/* ---------------------------------------------
+   5. About (+ circular avatar card)
+--------------------------------------------- */
+.single-about-txt h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--text);
+}
+
+.single-about-txt p {
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    padding: var(--sp-5) 0 var(--sp-6);
+}
+
+.single-about-add-info h3 {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.single-about-add-info p {
+    color: var(--text-muted);
+    font-size: 14px;
+    overflow-wrap: break-word;
+}
+
+.single-about-img {
+    box-shadow: none;
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    background: linear-gradient(160deg, rgba(34, 211, 238, 0.08), rgba(139, 92, 246, 0.12));
+}
+
+/* was an opaque navy panel covering the whole card */
+.single-about-img:before {
+    width: 100%;
+    background: radial-gradient(62% 62% at 50% 16%, rgba(34, 211, 238, 0.22), rgba(5, 6, 15, 0) 72%);
+}
+
+.box {
+    width: min(30rem, 84vw);
+    height: min(30rem, 84vw);
+    margin: var(--sp-5) auto;
+    background: rgba(8, 10, 24, 0.55);
+    box-shadow: inset 0 0 70px rgba(34, 211, 238, 0.12);
+}
+
+.box::before {
+    inset: -1rem 9rem;
+    background: conic-gradient(from 0deg, #22d3ee, #8b5cf6, #d946ef, #22d3ee);
+    animation-duration: 7s;
+}
+
+.box::after {
+    background: #0b0f24;
+}
+
+.box .content {
+    border-color: #0b0f24;
+}
+
+.content h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 5vw, 2.6rem);
+    line-height: 1.1;
+}
+
+.content span {
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+}
+
+.content a {
+    background: var(--grad);
+    color: #05060f;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: var(--r-pill);
+    letter-spacing: 0.1em;
+    /* explicit property list instead of `all`; `transform` is deliberately
+       absent — hover must not move the button (see the note below) */
+    transition: box-shadow 0.25s ease, color 0.2s ease,
+        background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Hover must never touch letter-spacing: widening the label re-flowed the
+   button (measured 87px -> 90px, left edge shifting 1017.7px -> 1016.2px) and
+   re-centred it inside the circle, so the button visibly jumped as the cursor
+   arrived. The `translateY(-2px)` lift added later caused the same class of
+   jump (the button left its row by 2px), so it was removed as well.
+   Paint-level feedback only: colour/gradient + cyan glow shadow. */
+.content a:hover {
+    color: #05060f;
+    background: var(--grad);
+    box-shadow: 0 12px 30px rgba(34, 211, 238, 0.45);
+}
+
+/* ---------------------------------------------
+   6. Education timeline
+--------------------------------------------- */
+.education-horizontal-timeline {
+    padding: var(--sp-7) 0 0;
+}
+
+.timeline-horizontal-border {
+    /* right inset keeps the rule inside its own column: with the 2px column
+       padding the line used to run out to the column edge and butt into the
+       next column's icon/line ("line going out") */
+    padding: var(--sp-5) 14px var(--sp-5) 0;
+}
+
+.timeline-horizontal-border i {
+    color: var(--accent);
+    text-shadow: 0 0 14px rgba(34, 211, 238, 0.7);
+}
+
+/* flex-fill instead of a hard 380px so it never overflows the column */
+span.single-timeline-horizontal {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    height: 2px;
+    border-radius: var(--r-pill);
+    background: linear-gradient(90deg, rgba(34, 211, 238, 0.75), rgba(139, 92, 246, 0.2));
+}
+
+span.single-timeline-horizontal.spacial-horizontal-line {
+    flex: 0 0 88px;
+    width: 88px;
+}
+
+.single-horizontal-timeline .experience-time h2 {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 15px;
+    letter-spacing: 0.08em;
+}
+
+.single-horizontal-timeline .experience-time h3 {
+    color: var(--text);
+}
+
+.single-horizontal-timeline .timeline-content h4.title {
+    color: var(--text);
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.single-horizontal-timeline .timeline-content h5 {
+    color: var(--accent-soft);
+}
+
+.single-horizontal-timeline p {
+    color: var(--text-dim);
+}
+
+/* ---------------------------------------------
+   7. Skills
+--------------------------------------------- */
+.skill-content {
+    padding: var(--sp-8) 0 var(--sp-7);
+}
+
+.barWrapper {
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+}
+
+.progress {
+    height: 10px;
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.progress-bar {
+    border-radius: var(--r-pill);
+    background: var(--grad);
+    box-shadow: 0 0 18px rgba(34, 211, 238, 0.4);
+}
+
+.single-progress-txt h3 {
+    top: 8px;
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.tooltip > .tooltip-inner {
+    color: var(--accent);
+    background: rgba(8, 10, 24, 0.92);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+}
+
+/* ---------------------------------------------
+   8. Experience
+--------------------------------------------- */
+.single-timeline-box {
+    margin-bottom: var(--sp-8);
+}
+
+.experience-time h2 {
+    color: #ffffff;
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+}
+
+.experience-time h3 {
+    color: var(--text-muted);
+}
+
+.main-timeline:before {
+    width: 2px;
+    background: linear-gradient(180deg, rgba(34, 211, 238, 0.65), rgba(139, 92, 246, 0.28) 55%, rgba(139, 92, 246, 0));
+}
+
+.timeline-content span > i,
+.experience-time span > i {
+    color: var(--accent);
+    text-shadow: 0 0 14px rgba(34, 211, 238, 0.75);
+}
+
+.timeline-content h4.title {
+    color: var(--text);
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.timeline-content h5 {
+    color: var(--accent-soft);
+    margin: var(--sp-3) 0 var(--sp-3);
+}
+
+.main-timeline .description {
+    color: var(--text-muted);
+}
+
+/* NOTE: `.timeline-content` stays `position:static` — the absolutely
+   positioned timeline dots resolve against `.main-timeline .timeline`. */
+.main-timeline .timeline-content {
+    padding: var(--sp-4) var(--sp-5);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    background: var(--surface);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.timeline-single-before:before {
+    border-left: 15px solid rgba(5, 6, 15, 0.88);
+}
+
+/* ---------------------------------------------
+   9. Profiles
+--------------------------------------------- */
+.single-profile {
+    height: 160px;
+    margin: var(--sp-1);
+    border-right: 1px solid var(--border) !important;
+    border-radius: var(--r-md);
+    background: var(--surface);
+}
+
+.profile-border {
+    border-bottom: 1px solid var(--border) !important;
+    margin: var(--sp-4) 0;
+}
+
+.profile-icon-name {
+    color: var(--text-muted) !important;
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.profile-txt a > i {
+    color: var(--accent);
+}
+
+.single-profile-overlay {
+    background: var(--grad) !important;
+    border-radius: var(--r-md);
+}
+
+.single-profile:hover .profile-icon-name,
+.single-profile:hover .profile-txt a > i {
+    color: #05060f !important;
+}
+
+/* ---------------------------------------------
+   10. Portfolio
+--------------------------------------------- */
+.isotope .item {
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: var(--sh-sm);
+    /* no `transform` in the transition list — the hover state below is paint-only */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* hover: glow + border only. The old `translateY(-6px)` lifted the tile out of
+   its grid row and broke alignment with its neighbours (the reported jump). */
+.isotope .item:hover {
+    border-color: var(--border-strong);
+    box-shadow: var(--sh-glow);
+}
+
+/* a 1.5x zoom was unusable at this tile size.
+   This zoom is the ONLY hover transform kept in this block: it is applied to
+   the <img> inside a tile whose `overflow: hidden` clips it, so the image can
+   never escape the tile and can never move the tile or its neighbours.
+   The legacy `.isotope .item:hover img` rule in section 9 now states the same
+   1.06 scale, so the two blocks can no longer resolve to different values. */
+.isotope .item:hover img {
+    -webkit-transform: scale(1.06);
+    transform: scale(1.06);
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+}
+
+/* Bootstrap's `.row` carries `margin: 0 -15px`, so at the container's
+   max-width it bleeds 15px past BOTH edges of `.container` — 6 rows here mean
+   18 elements (rows + edge columns) sitting outside their container, which the
+   layout QA flags as clipped / horizontally scrolled. Neutralise the negative
+   gutter inside the showcase and move the spacing onto the columns instead, so
+   every tile stays fully inside its container. */
+.isotope .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.isotope .row > [class*="col-"] {
+    padding-left: var(--sp-3);
+    padding-right: var(--sp-3);
+}
+
+/* Same Bootstrap gutter bleed as the showcase: `.row { margin: 0 -15px }`
+   pushes every content row 15px past its `.container`/`section` box (about,
+   education, experience, profiles …). Neutralise it site-wide for the rows
+   that live inside `.container`, and restore the gutter as column padding so
+   the grid spacing is unchanged but nothing escapes its container. */
+.container > .row,
+.container .row.row-flush {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* the rows are often wrapped in a section-specific box (`.about-content`,
+   `.experience-content` …), so match them anywhere under `.container` */
+.container .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.container .row > [class*="col-"] {
+    padding-left: var(--sp-3);
+    padding-right: var(--sp-3);
+}
+
+.isotope-overlay {
+    background: linear-gradient(160deg, rgba(6, 8, 18, 0.86), rgba(34, 211, 238, 0.22) 55%, rgba(139, 92, 246, 0.5)) !important;
+}
+
+.isotope-overlay a {
+    padding: 0 var(--sp-4);
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+/* ---------------------------------------------
+   11. Clients
+--------------------------------------------- */
+.clients-area {
+    height: auto !important;
+    align-items: stretch;
+    padding: var(--sp-5) 0 var(--sp-6);
+}
+
+.clients-area .item {
+    padding: 0 var(--sp-3);
+}
+
+.clients .clients-area .owl-carousel .owl-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 112px;
+    padding: var(--sp-4);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    background: var(--surface);
+    color: var(--text-muted);
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    /* no `transform` — hover feedback below is paint-only */
+    transition: color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* hover: colour + border + tint only. The old `translateY(-3px)` lifted the
+   logo tile out of the Owl row and disturbed the strip's alignment. */
+.clients .clients-area .owl-carousel .owl-item a:hover,
+.clients .clients-area .owl-carousel .owl-item a:focus {
+    color: #ffffff;
+    border-color: var(--border-strong);
+    background: rgba(34, 211, 238, 0.12);
+}
+
+/* ---------------------------------------------
+   11b. Clients - 3D coverflow slider (.client-3d)
+   The old Owl Carousel strip (#client) was replaced by a dependency-free
+   slider that drives real depth: perspective + per-ring translateZ /
+   rotateY / scale / opacity (see assets/js/custom.js -> clients3D).
+   Without JS the stage falls back to a tidy wrapped grid of the same tiles.
+--------------------------------------------- */
+.client-3d {
+    /* JS overwrites --c3d-card-w with a px value per breakpoint */
+    --c3d-card-w: clamp(176px, 20vw, 268px);
+    position: relative;
+    overflow: hidden;
+    padding: 0 0 var(--sp-3);
+}
+
+.client-3d__stage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--sp-3);
+    position: relative;
+    outline: none;
+}
+
+.client-3d.is-ready .client-3d__stage {
+    display: block;
+    height: calc(var(--c3d-card-w) * 1.12);
+    perspective: 1200px;
+    perspective-origin: 50% 44%;
+    transform-style: preserve-3d;
+    cursor: grab;
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.client-3d.is-dragging .client-3d__stage {
+    cursor: grabbing;
+}
+
+.client-3d.is-ready .client-3d__stage:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 8px;
+    border-radius: var(--r-lg);
+}
+
+.client-3d__slide {
+    width: var(--c3d-card-w);
+    height: calc(var(--c3d-card-w) * 0.94);
+}
+
+.client-3d.is-ready .client-3d__slide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* only animate between rings, never during a resize re-layout */
+.client-3d.is-animating .client-3d__slide {
+    transition: transform 0.62s cubic-bezier(0.22, 0.85, 0.24, 1), opacity 0.5s ease;
+}
+
+/* ---- tile ---- */
+.client-3d__tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    height: 100%;
+    padding: var(--sp-4);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    background:
+        linear-gradient(160deg, rgba(34, 211, 238, 0.1), rgba(139, 92, 246, 0.08) 46%, rgba(5, 6, 15, 0) 78%),
+        var(--surface);
+    color: var(--text-muted);
+    text-align: center;
+    box-shadow: var(--sh-sm);
+    /* no `transform`: the JS coverflow writes ring transforms on
+       .client-3d__slide, so a CSS hover transform here could fight them and
+       disturb the ring (see the hover note below) */
+    transition: border-color 0.35s ease, color 0.35s ease,
+        box-shadow 0.35s ease, background-color 0.35s ease;
+}
+
+.client-3d__glow {
+    position: absolute;
+    top: -60%;
+    right: 0;
+    left: 0;
+    height: 130%;
+    background: radial-gradient(closest-side, rgba(34, 211, 238, 0.34),
+            rgba(139, 92, 246, 0.14) 62%, rgba(5, 6, 15, 0) 78%);
+    opacity: 0.34;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.client-3d__mark {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-sm);
+    background: rgba(34, 211, 238, 0.1);
+    box-shadow: inset 0 0 18px rgba(34, 211, 238, 0.18);
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    transition: color 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+}
+
+.client-3d__name {
+    position: relative;
+    display: block;
+    color: inherit;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.client-3d__meta {
+    position: relative;
+    display: block;
+    color: var(--text-dim);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+/* ---- active ring: brighter, glowing, on top ---- */
+.client-3d.is-ready .client-3d__slide[data-pos="0"] .client-3d__tile {
+    border-color: var(--border-strong);
+    color: #ffffff;
+    box-shadow: var(--sh-glow), inset 0 0 0 1px rgba(34, 211, 238, 0.22);
+}
+
+.client-3d.is-ready .client-3d__slide[data-pos="0"] .client-3d__glow {
+    opacity: 0.85;
+}
+
+.client-3d.is-ready .client-3d__slide[data-pos="0"] .client-3d__mark {
+    color: #ffffff;
+    border-color: var(--accent);
+    background: rgba(34, 211, 238, 0.2);
+}
+
+/* ---- hover / focus highlight (same specificity as the active rule above,
+       declared later so a hovered active card still highlights).
+       PAINT-ONLY by contract: colour / border / background / box-shadow /
+       opacity. Never add display, flex-*, gap, width, height, position or
+       transform here — the JS coverflow owns the ring transform on
+       .client-3d__slide and hover must not re-layout the stage or the tile.
+       The two bare selectors below are NOT redundant: the `.is-ready` pair above
+       only exists with JS, so `.client-3d__tile:hover/:focus-visible` is the
+       hover/focus feedback of the no-JS fallback (see the `.client-3d__stage`
+       flex grid at the top of this section). ---- */
+.client-3d.is-ready .client-3d__slide:hover .client-3d__tile,
+.client-3d.is-ready .client-3d__slide:focus-within .client-3d__tile,
+.client-3d__tile:hover,
+.client-3d__tile:focus-visible {
+    color: #ffffff;
+    border-color: var(--border-strong);
+    background:
+        linear-gradient(160deg, rgba(34, 211, 238, 0.18), rgba(139, 92, 246, 0.14) 46%, rgba(5, 6, 15, 0) 78%),
+        var(--surface-2);
+    box-shadow: 0 22px 46px rgba(34, 211, 238, 0.22);
+}
+
+.client-3d__tile:hover .client-3d__glow,
+.client-3d__tile:focus-visible .client-3d__glow,
+.client-3d__slide:hover .client-3d__glow,
+.client-3d__slide:focus-within .client-3d__glow {
+    opacity: 1;
+}
+
+.client-3d__tile:hover .client-3d__mark,
+.client-3d__tile:focus-visible .client-3d__mark,
+.client-3d__slide:hover .client-3d__mark,
+.client-3d__slide:focus-within .client-3d__mark {
+    color: #ffffff;
+    border-color: var(--accent);
+    background: rgba(34, 211, 238, 0.2);
+}
+
+/* ---- prev / next ---- */
+.client-3d__nav {
+    position: absolute;
+    top: calc(var(--c3d-card-w) * 0.56 + var(--sp-3));
+    z-index: 200;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-pill);
+    background: rgba(10, 13, 31, 0.72);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    transition: transform 0.28s ease, border-color 0.28s ease, background-color 0.28s ease,
+        color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.client-3d__nav--prev { left: 0; }
+.client-3d__nav--next { right: 0; }
+
+/* hover: colour + glow only. The `-50%` centering is restated explicitly so the
+   arrow can never lose it and jump vertically (that is what happened whenever
+   the hover transform was nulled or forgot the translate). The old
+   `scale(1.08)` grew the 44px arrow, so it was dropped with the lift. */
+.client-3d__nav:hover,
+.client-3d__nav:focus-visible {
+    color: #ffffff;
+    border-color: var(--accent);
+    background: rgba(34, 211, 238, 0.18);
+    box-shadow: 0 0 22px rgba(34, 211, 238, 0.4);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+/* ---- generated dots ---- */
+.client-3d__dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--sp-2);
+    margin-top: var(--sp-5);
+}
+
+.client-3d__dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--r-pill);
+    background: rgba(146, 160, 255, 0.28);
+    cursor: pointer;
+    transition: width 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.client-3d__dot[aria-selected="true"] {
+    width: 26px;
+    background: var(--grad);
+    box-shadow: 0 0 14px rgba(34, 211, 238, 0.55);
+}
+
+.client-3d__dot:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* keep the 3D stage inside the section - no horizontal overflow */
+.client-3d,
+section.clients {
+    overflow: hidden;
+}
+
+@media (max-width: 767px) {
+    .client-3d.is-ready .client-3d__stage {
+        height: calc(var(--c3d-card-w) * 1.2);
+    }
+
+    .client-3d__mark {
+        width: 46px;
+        height: 46px;
+        font-size: 15px;
+    }
+
+    .client-3d__nav {
+        width: 38px;
+        height: 38px;
+        font-size: 19px;
+    }
+
+    .client-3d__nav--prev { left: -4px; }
+    .client-3d__nav--next { right: -4px; }
+}
+
+/* ---------------------------------------------
+   12. Contact
+--------------------------------------------- */
+.single-contact-box {
+    padding-top: var(--sp-7);
+}
+
+.contact-add-head h3 {
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 600;
+}
+
+.contact-add-head p {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    margin-top: var(--sp-3);
+}
+
+.contact-add-info {
+    margin: var(--sp-6) 0 var(--sp-7);
+}
+
+.single-contact-add-info {
+    margin-bottom: var(--sp-5);
+}
+
+.single-contact-add-info h3 {
+    color: var(--accent-soft);
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.single-contact-add-info p {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-top: var(--sp-2);
+    overflow-wrap: break-word;
+}
+
+/* social row: real 44px touch targets instead of bare glyph links */
+.hm-foot-icon ul li > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-right: var(--sp-3);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    background: var(--surface);
+    color: var(--text-muted) !important;
+    /* no `transform` — these icons are floated in a row, so any lift on hover
+       visibly breaks their alignment (see below) */
+    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* hover: fill + colour only. The old `translateY(-2px)` raised each floated
+   icon out of the row — this is the "alignment gets disturbed on hover" jump. */
+.hm-foot-icon ul li > a:hover,
+.hm-foot-icon ul li > a:focus {
+    color: #05060f !important;
+    background: var(--grad);
+    border-color: transparent;
+}
+
+/* ---------------------------------------------
+   13. Footer + floating actions
+--------------------------------------------- */
+#footer-copyright {
+    background: rgba(4, 5, 13, 0.72);
+    border-top: 1px solid var(--border);
+}
+
+.hm-footer-copyright p {
+    color: var(--text-dim);
+    font-size: 13px;
+    line-height: 1.9;
+    padding: var(--sp-6) 0 var(--sp-4);
+}
+
+.hm-footer-copyright p a {
+    color: var(--accent);
+}
+
+.hm-footer-copyright ui {
+    display: block;
+    margin-top: var(--sp-3);
+}
+
+.hm-footer-copyright ui li {
+    display: inline-block;
+    margin: 0 var(--sp-3) var(--sp-3);
+}
+
+.hm-footer-copyright ui li a {
+    color: var(--text-muted);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+}
+
+.hm-footer-copyright ui li a:hover,
+.hm-footer-copyright ui li a:focus {
+    color: var(--accent);
+}
+
+/* back-to-top FAB: keeps the theme's raised offset so it clears the fixed
+   cookie banner. */
+#scroll-Top .return-to-top {
+    right: 32px;
+    bottom: 96px;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+    font-size: 20px;
+    border: 0;
+    color: #05060f;
+    background: var(--grad);
+    box-shadow: 0 14px 34px rgba(34, 211, 238, 0.28), 0 8px 26px rgba(139, 92, 246, 0.3);
+}
+
+#scroll-Top .return-to-top:hover,
+#scroll-Top .return-to-top:focus {
+    background: var(--grad);
+    color: #05060f;
+    border: 0;
+    box-shadow: 0 18px 42px rgba(34, 211, 238, 0.38), 0 10px 32px rgba(139, 92, 246, 0.4);
+    /* no geometry on hover: the FAB keeps its fixed box, only the glow grows */
+}
+
+/* ---------------------------------------------
+   14. Cookie banner
+   (inline attributes in index.html are kept as a no-CSS fallback,
+    hence the !important overrides)
+--------------------------------------------- */
+#cookie-consent-banner {
+    background: rgba(6, 8, 18, 0.94) !important;
+    border-top: 1px solid var(--border-strong);
+    padding: var(--sp-4) var(--sp-5) !important;
+    width: 100% !important;
+    text-align: center;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 -14px 40px rgba(0, 0, 0, 0.5);
+}
+
+#cookie-consent-banner p {
+    color: var(--text-muted) !important;
+    font-size: 13px !important;
+    line-height: 1.7;
+    max-width: 900px;
+    margin: 0 auto !important;
+}
+
+#cookie-consent-banner a {
+    color: var(--accent) !important;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+#cookie-consent-banner button {
+    margin-top: var(--sp-3) !important;
+    min-height: 40px;
+    padding: 10px 26px !important;
+    border: 0 !important;
+    border-radius: var(--r-pill) !important;
+    background: var(--grad) !important;
+    color: #05060f !important;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease;
+}
+
+/* no geometry on hover: glow only, so the banner button cannot resize/refit */
+#cookie-consent-banner button:hover,
+#cookie-consent-banner button:focus {
+    box-shadow: 0 12px 30px rgba(34, 211, 238, 0.3);
+}
+
+/* ---------------------------------------------
+   15. Reduced motion
+--------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    .p3d-orb,
+    .p3d-grid-floor,
+    .p3d-star,
+    .p3d-spark,
+    .p3d-shape,
+    .box::before,
+    .hero-badge i {
+        animation: none !important;
+    }
+
+    /* the static hero headline: it has no animation of its own, so this block
+       only has to release any inherited paint - fully opaque, un-rotated text. */
+    .header-text h2 {
+        animation: none !important;
+        -webkit-transform: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+    }
+
+    .header-text a,
+    .isotope .item,
+    .isotope .item img,
+    .isotope-overlay,
+    .clients .clients-area .owl-carousel .owl-item a,
+    .client-3d__slide,
+    .client-3d__tile,
+    .client-3d__glow,
+    .client-3d__mark,
+    .client-3d__nav,
+    .client-3d__dot,
+    .hm-foot-icon ul li > a,
+    nav.navbar.bootsnav ul.nav > li > a::after,
+    .single-profile-overlay,
+    #scroll-Top .return-to-top {
+        transition: none !important;
+    }
+
+    /* every hover state is paint-only now, so the only hover transform left to
+       calm down is the clipped portfolio image zoom. */
+    .isotope .item:hover img {
+        -webkit-transform: none !important;
+        transform: none !important;
+    }
+
+    /* IMPORTANT: the nav arrows must KEEP their -50% centering here. A blanket
+       `transform: none` on :hover dropped the translate and made the arrows
+       jump vertically on hover. */
+    .client-3d__nav:hover,
+    .client-3d__nav:focus-visible {
+        -webkit-transform: translateY(-50%) !important;
+        transform: translateY(-50%) !important;
+    }
+}
+
+li.smooth-menu1
+ {
+    list-style: none;
+}
+
+/* ---------------------------------------------
+   Cookie consent banner + Accept button
+   The Accept <button> had no styling class and only inline styles, so it
+   rendered as a browser-default control. It now uses the same button language
+   (token gradient, radius, uppercase label) as the rest of the site, and its
+   hover/focus states are paint-only (box-shadow / outline — no transform, so
+   the button cannot shift under the cursor).
+--------------------------------------------- */
+.cookie-banner {
+    background: var(--surface, #0b1020) !important;
+    border-top: 1px solid var(--border, #223047);
+    color: #b9c4d8;
+    box-shadow: var(--sh-sm, 0 -8px 24px rgba(0, 0, 0, .35));
+}
+
+.cookie-banner p {
+    color: #b9c4d8;
+    max-width: 68ch;
+    margin: 0 auto !important;
+    line-height: 1.6;
+}
+
+.cookie-banner p a {
+    color: var(--accent, #22d3ee);
+    text-decoration: underline;
+}
+
+.cookie-accept {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--sp-3, 12px);
+    padding: 10px 26px;
+    border: 1px solid transparent;
+    border-radius: var(--r-md, 10px);
+    background: var(--grad, linear-gradient(to right, #22d3ee 0%, #8b5cf6 100%));
+    color: #05060f;
+    font-family: var(--font-display, inherit);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: box-shadow .3s ease;
+}
+
+.cookie-accept:hover {
+    box-shadow: var(--sh-glow, 0 0 0 1px rgba(34, 211, 238, .5));
+}
+
+.cookie-accept:focus-visible {
+    outline: 2px solid var(--accent, #22d3ee);
+    outline-offset: 2px;
+}
+
+/* ---------------------------------------------
+   16. Desktop-only navigation spacing
+   Kept behind min-width:993px so the collapsed-menu rules in
+   responsive.css (<=992px) keep ownership of the mobile header.
+--------------------------------------------- */
+@media (min-width: 993px) {
+    nav.navbar.bootsnav ul.nav > li > a {
+        padding: 40px 18px;
+    }
+}
+
+/* ---------------------------------------------
+   17. Header WhatsApp CTA
+   Icon-driven pill in the right-hand nav group (last <li>, see index.html).
+   The number lives in exactly ONE place: the wa.me href in index.html
+   (919999999999 there is a PLACEHOLDER to be replaced by the owner).
+   Hover/focus below is PAINT-ONLY (background, border, box-shadow) — the
+   theme's generic `a:hover` rule is (0,1,1) and this repo's rule is to keep
+   interaction states free of layout declarations.
+--------------------------------------------- */
+nav.navbar.bootsnav ul.nav > li.nav-whatsapp > a {
+    /* same box as the other nav items -> the pill self-aligns at every breakpoint */
+    padding: 40px 18px;
+    line-height: 1;
+    color: #ffffff !important;
+}
+
+/* the theme paints a gradient underline under every nav item; a pill has none */
+nav.navbar.bootsnav ul.nav > li.nav-whatsapp > a::after {
+    display: none;
+}
+
+.whatsapp-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2, 8px);
+    padding: 9px 16px;
+    border: 1px solid rgba(37, 211, 102, 0.45);
+    border-radius: var(--r-pill, 999px);
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #ffffff !important;
+    font-family: var(--font-display, inherit);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+    /* centres the pill on the nav item's line box */
+    vertical-align: middle;
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.28);
+    -webkit-transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.whatsapp-cta .fa-whatsapp {
+    font-size: 17px;
+    line-height: 1;
+    color: #ffffff !important;
+}
+
+/* hover / focus feedback — paint only */
+nav.navbar.bootsnav ul.nav > li.nav-whatsapp > a:hover .whatsapp-cta,
+nav.navbar.bootsnav ul.nav > li.nav-whatsapp > a:focus .whatsapp-cta,
+.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li.nav-whatsapp > a:hover .whatsapp-cta,
+.sticky-wrapper.is-sticky nav.navbar.bootsnav ul.nav > li.nav-whatsapp > a:focus .whatsapp-cta {
+    background: linear-gradient(135deg, #2fdc72 0%, #14a08e 100%);
+    border-color: #25d366;
+    color: #ffffff !important;
+    box-shadow: 0 8px 26px rgba(37, 211, 102, 0.5);
+}
+
+/* keyboard focus: the global `a:focus-visible` outline + a glow on the pill */
+nav.navbar.bootsnav ul.nav > li.nav-whatsapp > a:focus-visible .whatsapp-cta {
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.55), 0 8px 26px rgba(37, 211, 102, 0.5);
+}
+
+/* ---------------------------------------------------------------
+   Overflow guard: the legacy timeline/container blocks
+   (.about-content, .education-horizontal-timeline, .experience-content,
+   .main-timeline, .single-about-txt) can overflow their box by a few
+   pixels, which surfaces as an inner horizontal scrollbar. Clamp them so
+   no section ever scrolls sideways; the page itself already fits.
+--------------------------------------------------------------- */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.about-content,
+.education-horizontal-timeline,
+.experience-content,
+.main-timeline,
+.single-about-txt {
+    max-width: 100%;
+    overflow-x: clip;
+}

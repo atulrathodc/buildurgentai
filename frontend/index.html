@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+  BuildUrgent AI — frontend source entry point.
+
+  This is the canonical UI source for ai.buildurgent.com. The full production
+  markup lives in the repository-root `index.html`; this directory mirrors the
+  frontend layout (markup + a pointer to the shared `../assets` bundle) so the
+  UI has a single, conventional source home that the server can serve directly.
+
+  Served by backend/server.py: GET /  ->  frontend/index.html
+-->
+<html lang="en" data-frontend-source="frontend/">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="BuildUrgent AI is an agentic AI platform for production workflows: autonomous agents that plan, build and ship real work."
+    />
+    <title>BuildUrgent AI — Agentic AI platform for real work</title>
+    <link rel="canonical" href="https://ai.buildurgent.com/" />
+
+    <!-- Production page (root index.html) pulls the shared asset bundle. -->
+    <script>
+      // Delegate to the full production document so there is exactly one
+      // maintained set of markup. Works with or without JavaScript.
+      (function () {
+        if (window.location.pathname.replace(/\/+$/, "") === "/frontend") {
+          window.location.replace("/");
+        }
+      })();
+    </script>
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=/" />
+    </noscript>
+  </head>
+  <body>
+    <p>
+      BuildUrgent AI — <a href="/">continue to the product site</a>.
+    </p>
+  </body>
+</html>

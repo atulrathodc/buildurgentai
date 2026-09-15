@@ -1,0 +1,26 @@
+{
+  "short_name": "BuildUrgent AI",
+  "name": "BuildUrgent AI — agentic AI platform",
+  "description": "BuildUrgent AI is an agentic AI platform for production workflows: autonomous agents that plan, build and ship real work.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#05060f",
+  "background_color": "#05060f"
+}

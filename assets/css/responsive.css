@@ -1,0 +1,203 @@
+@media screen and (max-width:1680px){
+
+}/*max-width:1680px*/
+@media screen and (max-width:1440px){
+	.single-about-img img {max-width:100%;}
+	.single-about-img:before,.about-list-icon{width: 100%;}
+}/*max-width:1440px*/
+
+@media screen and (max-width:1199px){
+	nav.navbar.bootsnav ul.nav > li > a { padding: 35px 8px;}
+	
+	.welcome-hero {height: 768px;}
+
+	.timeline-content span>i, .experience-time span>i {left: 0;}
+}/*max-width:1199px*/
+
+@media screen and (max-width:1024px){
+
+
+}/*max-width:1024px*/
+
+@media screen and (max-width:1008px){
+	nav.navbar.bootsnav ul.nav > li.dropdown span.megamenu-title  {display:block;color: #43465d;font-size: 18px;}
+	nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li .megamenu-sub-title a {margin-top: 20px;font-size: 14px;}
+	nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li .megamenu-sub-txt a{margin-bottom: 15px;}
+}/*max-width:1008px*/
+
+@media screen and (max-width:992px){
+	nav.navbar.bootsnav .navbar-collapse.collapse.in {padding-bottom: 30px;}
+	nav.navbar.bootsnav .navbar-toggle {display: inline-block; float: right;margin-right: 0;margin-top: 21px;}
+	nav.navbar.bootsnav .navbar-brand {float: left!important;}
+	nav.navbar.bootsnav ul.nav > li > a {padding: 15px 0px;border: transparent;}
+}/*max-width:992px*/
+
+@media screen and (max-width:991px){
+	.experience-time-responsive{display: block;}
+	.experience-time-main{display: none;}
+	.experience-time,.timeline-content{text-align: left;margin-bottom: 20px;margin-left: 40px;}
+	.timeline-content span>i{left: 0;top: -54%;}
+	.experience-time span>i {left: 0;top: 6%;}
+	.main-timeline:before {left:0.4%;}
+
+	.single-horizontal-timeline .experience-time,.single-horizontal-timeline .timeline-content {margin: 0;}
+}/*max-width:991px*/
+
+@media screen and (max-width:768px){
+    
+}/*max-width:768px*/
+
+@media screen and (max-width:767px){
+	.single-about-img {max-width: 450px;}
+	.experience-time span>i,.timeline-content span>i,.main-timeline:before {display: none;}
+	.experience-time, .timeline-content {margin-left: 0;}
+
+	.isotope .item {max-width: 350px;margin: 0 auto 30px;}
+
+	.single-profile {max-width: 350px; margin: 30px auto;border: 0;}
+	.profile-border{border: 0;}
+
+	.single-horizontal-timeline {max-width: 350px;margin: 30px auto;}
+
+}/*max-width:767px*/
+
+@media screen and (max-width: 660px){
+
+}/*max-width:660px*/
+
+@media screen and (max-width: 640px){
+
+}/*max-width:640px*/
+
+@media screen and (max-width: 580px){
+
+}/*max-width:580px*/
+
+@media screen and (max-width: 540px){
+	.subscribe-title h2 {font-size: 24px;}
+
+}/*max-width:540px*/
+
+@media screen and (max-width: 480px){
+	
+}/*max-width:480px*/
+
+@media screen and (max-width: 440px){
+	
+}/*max-width:400px*/
+
+@media screen and (max-width:350px){
+
+}/*max-width:350px*/
+
+@media screen and  (max-width: 320px){
+	
+}/*max-width:320px*/
+
+/*==========================================================================
+  THEME OVERRIDE LAYER — responsive rules (see the block at the end of
+  style.css). Lives here so these win over style.css on small screens.
+==========================================================================*/
+
+@media screen and (max-width:992px){
+	/* collapsed menu panel: the dark re-skin must not leave a white sheet */
+	nav.navbar.bootsnav .navbar-collapse.collapse.in {
+		background: rgba(7, 9, 22, 0.98) !important;
+		border-top: 1px solid var(--border);
+		-webkit-backdrop-filter: blur(16px);
+		backdrop-filter: blur(16px);
+	}
+	nav.navbar.bootsnav ul.nav > li > a {
+		padding: 16px var(--sp-4) !important;
+		color: var(--text) !important;
+	}
+	/* the template hard-codes a 350px scroll box for the nav panel */
+	nav.navbar.bootsnav .menu-ui-design {
+		height: auto;
+		max-height: 70vh;
+	}
+	nav.navbar.bootsnav ul.nav > li > a::after {
+		left: var(--sp-4);
+		right: auto;
+		width: 32px;
+		bottom: 8px;
+	}
+	.welcome-hero {
+		padding: 130px 0 90px;
+	}
+}/*max-width:992px*/
+
+@media screen and (max-width:767px){
+	/* hero headline on phones: still the same centred three-line STATIC block -
+	   the type scale changes, the layout does not. */
+	.header-text h2 {
+		letter-spacing: 0;
+		line-height: 1.1;
+		display: block;
+		width: 100%;
+		max-width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		text-indent: 0;
+	}
+	.hero-actions {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.header-text a {
+		width: 100% !important;
+	}
+	/* keep the profile tiles uniform (the template drops the border here) */
+	.single-profile {
+		border: 1px solid var(--border) !important;
+	}
+	.box {
+		width: min(24rem, 88vw);
+		height: min(24rem, 88vw);
+	}
+	.box::before {
+		inset: -1rem 6rem;
+	}
+	.section-heading h2 {
+		letter-spacing: 0.12em;
+	}
+	.single-contact-box {
+		padding-top: var(--sp-6);
+	}
+	#scroll-Top .return-to-top {
+		right: 20px;
+		bottom: 90px;
+	}
+}/*max-width:767px*/
+
+/* ---------------------------------------------
+   Header WhatsApp CTA in the COLLAPSED menu.
+   992px is the breakpoint at which the template swaps the horizontal nav for
+   the .navbar-toggle panel (see the rule at the top of this file), so the pill
+   is re-flown there as a list row instead of a floated nav item.
+--------------------------------------------- */
+@media screen and (max-width:992px){
+	nav.navbar.bootsnav ul.nav > li.nav-whatsapp {
+		float: none;
+	}
+	nav.navbar.bootsnav ul.nav > li.nav-whatsapp > a {
+		padding: 12px var(--sp-4) 4px !important;
+		line-height: 1;
+	}
+	nav.navbar.bootsnav ul.nav > li.nav-whatsapp > a::after {
+		display: none;
+	}
+	.whatsapp-cta {
+		padding: 10px 18px;
+		font-size: 12px;
+	}
+}/*max-width:992px*/
+
+@media screen and (max-width:480px){
+	/* the panel is narrow: let the chat pill span it for a comfortable tap target */
+	.whatsapp-cta {
+		width: 100%;
+	}
+}/*max-width:480px*/
+

@@ -1,0 +1,14 @@
+{
+  "name": "buildurgentai",
+  "version": "2.0.0",
+  "private": true,
+  "description": "BuildUrgent AI product website (ai.buildurgent.com) - static frontend + dependency-free Python API server",
+  "scripts": {
+    "start": "python3 server.py",
+    "serve": "python3 server.py",
+    "test": "python3 -m pytest tests -q"
+  },
+  "engines": {
+    "python": ">=3.8"
+  }
+}

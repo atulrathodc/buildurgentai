@@ -1,0 +1,16 @@
+{
+  "name": "buildurgentai",
+  "description": "BuildUrgent AI product website (ai.buildurgent.com) — static site + stdlib Python API server",
+  "runtime": "python3",
+  "entrypoint": "server.py",
+  "commands": {
+    "start": "python3 server.py",
+    "test": "python3 -m pytest tests -q"
+  },
+  "env": {
+    "HOST": "0.0.0.0",
+    "PORT": "8080"
+  },
+  "dependencies": [],
+  "notes": "Zero-dependency standard-library implementation; requirements.txt is intentionally absent."
+}

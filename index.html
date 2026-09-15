@@ -1,0 +1,1184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#05060f" />
+    <meta name="description" content="BuildUrgent AI is the agentic AI platform for production workflows: orchestrate AI agents, connect your systems, and ship reliable AI automation with enterprise-grade security." />
+    <link rel="canonical" href="https://ai.buildurgent.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BuildUrgent AI" />
+    <meta property="og:title" content="BuildUrgent AI — Agentic AI platform for real work" />
+    <meta property="og:description" content="BuildUrgent AI is the agentic AI platform for production workflows: orchestrate AI agents, connect your systems, and ship reliable AI automation with enterprise-grade security." />
+    <meta property="og:url" content="https://ai.buildurgent.com/" />
+    <meta property="og:image" content="https://ai.buildurgent.com/logo512.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BuildUrgent AI — Agentic AI platform for real work" />
+    <meta name="twitter:description" content="BuildUrgent AI is the agentic AI platform for production workflows: orchestrate AI agents, connect your systems, and ship reliable AI automation with enterprise-grade security." />
+    <meta name="twitter:image" content="https://ai.buildurgent.com/logo512.png" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link href="/static/css/main.e6c13ad2.css" rel="stylesheet">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!--font-family: design-system faces. Web-font links removed so the product
+        site is fully self-contained: style.css already falls back to the
+        system stack (-apple-system / Segoe UI / Roboto). Self-host the
+        Space Grotesk / Inter / Poppins woff2 files here if brand faces are
+        required offline.-->
+    <!-- title of site -->
+    <title>BuildUrgent AI — Agentic AI platform for real work</title>
+
+    <!-- For favicon png -->
+    <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png" />
+
+    <!--font-awesome.min.css-->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <!--flat icon css-->
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+
+    <!--animate.css-->
+    <link rel="stylesheet" href="assets/css/animate.css">
+
+    <!--owl.carousel.css-->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+
+    <!--bootstrap.min.css-->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- bootsnav -->
+    <link rel="stylesheet" href="assets/css/bootsnav.css">
+
+    <!--style.css-->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!--responsive.css-->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <!--3D parallax background (layered depth stage: Midnight Aurora palette)-->
+    <link rel="stylesheet" href="assets/css/parallax3d.css">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+</head>
+
+<body><noscript>BuildUrgent AI works without JavaScript — the page below is fully readable. Enable JavaScript for the interactive 3-D background and animations.</noscript>
+    <!-- 3D background stage: decorative only, pointer-events:none, behind all content.
+         Primary renderer: WebGL canvas (#astra-stage, assets/js/astra3d.js).
+         Fallback: the .p3d-camera layer stack driven by assets/js/parallax3d.js
+         (revealed by .p3d-stage.p3d-fallback-on when WebGL is unavailable). -->
+    <div id="p3d-stage" class="p3d-stage" aria-hidden="true">
+        <canvas id="astra-stage" class="astra-canvas" aria-hidden="true"></canvas>
+        <div class="p3d-camera">
+            <!-- depth 1/5 - distant glowing orbs -->
+            <div class="p3d-layer p3d-layer--orbs" data-depth="0.04" data-z="-900" data-nowrap="1">
+                <span class="p3d-orb p3d-orb--1"></span>
+                <span class="p3d-orb p3d-orb--2"></span>
+                <span class="p3d-orb p3d-orb--3"></span>
+            </div>
+            <!-- depth 2/5 - wireframe floor -->
+            <div class="p3d-layer p3d-layer--grid" data-depth="0.04" data-z="-700" data-nowrap="1">
+                <span class="p3d-grid-floor"></span>
+            </div>
+            <!-- depth 3/5 - star field (filled by parallax3d.js) -->
+            <div class="p3d-layer p3d-layer--stars" id="p3d-stars" data-depth="0.28" data-z="-500"></div>
+            <!-- depth 4/5 - floating geometry -->
+            <div class="p3d-layer p3d-layer--shapes" data-depth="0.5" data-z="-220">
+                <span class="p3d-shape p3d-shape--ring p3d-shape--ring1"></span>
+                <span class="p3d-shape p3d-shape--ring p3d-shape--ring2"></span>
+                <span class="p3d-shape p3d-shape--cube"><i></i><i></i><i></i></span>
+                <span class="p3d-shape p3d-shape--tri"></span>
+                <!-- exact period duplicates (+50% down the layer) keep the wrap invisible -->
+                <span class="p3d-shape p3d-shape--ring p3d-shape--ring1 p3d-shape--dup"></span>
+                <span class="p3d-shape p3d-shape--ring p3d-shape--ring2 p3d-shape--dup"></span>
+                <span class="p3d-shape p3d-shape--cube p3d-shape--dup"><i></i><i></i><i></i></span>
+                <span class="p3d-shape p3d-shape--tri p3d-shape--dup"></span>
+            </div>
+            <!-- depth 5/5 - nearest drifting sparks (filled by parallax3d.js) -->
+            <div class="p3d-layer p3d-layer--sparks" id="p3d-sparks" data-depth="0.85" data-z="-60"></div>
+        </div>
+        <div class="p3d-vignette"></div>
+    </div>
+    <!-- <div id="root"></div> -->
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+    <div id="cookie-consent-banner" class="cookie-banner"
+        style="position: fixed; bottom: 0; left: 0; right: 0; box-sizing: border-box; background: #f4f4f4; width: 100%; max-width: 100%; padding: 15px; text-align: center; z-index: 9999;">
+        <p style="margin: 0; font-size: 14px;">
+            We use cookies to personalize content and ads, to provide social media features and to analyze our traffic.
+            We also share information about your use of our site with our social media, advertising and analytics
+            partners.
+            <a href="assets/download/PrivacyPolicy.pdf" target="_blank">Learn more</a>.
+        </p>
+        <button class="cookie-accept" onclick="acceptCookies()">Accept</button>
+    </div>
+
+    <script>
+        function acceptCookies() {
+            localStorage.setItem('cookie_consent', 'accepted');
+            document.getElementById('cookie-consent-banner').style.display = 'none';
+        }
+
+        window.onload = function () {
+            if (localStorage.getItem('cookie_consent') !== 'accepted') {
+                document.getElementById('cookie-consent-banner').style.display = 'block';
+            } else {
+                document.getElementById('cookie-consent-banner').style.display = 'none';
+            }
+        };
+    </script>
+
+    <!-- top-area Start -->
+    <header class="top-area">
+        <div class="header-area">
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-default bootsnav navbar-fixed dark no-background">
+
+                <div class="container">
+
+                    <!-- Start Header Navigation -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand" href="index.html">BuildUrgent AI</a>
+                    </div><!--/.navbar-header-->
+                    <!-- End Header Navigation -->
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+                        <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                            <li class=" smooth-menu active"></li>
+                            <li class="smooth-menu"><a href="#about">platform</a></li>
+                            <li class=" smooth-menu"><a href="#education">how it works</a></li>
+                            <li class="smooth-menu"><a href="#skills">capabilities</a></li>
+                            <li class="smooth-menu"><a href="#experience">use cases</a></li>
+                            <li class="smooth-menu"><a href="#portfolio">showcase</a></li>
+                            <li class="smooth-menu"><a href="#clients">integrations</a></li>
+                            <li class="smooth-menu"><a href="#contact">contact</a></li>
+                            <!-- Demo CTA (header action).
+                                 NOTE: this <li> deliberately does NOT carry `smooth-menu` —
+                                 custom.js binds `li.smooth-menu a` and calls preventDefault(),
+                                 which would block the in-page anchor. -->
+                            <li class="nav-whatsapp">
+                                <a href="#contact" aria-label="Book a demo of BuildUrgent AI">
+                                    <span class="whatsapp-cta">
+                                        <i class="fa fa-calendar-check" aria-hidden="true"></i>
+                                        <span class="whatsapp-cta__label">book a demo</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul><!--/.nav -->
+                    </div><!-- /.navbar-collapse -->
+                </div><!--/.container-->
+            </nav><!--/nav-->
+            <!-- End Navigation -->
+        </div><!--/.header-area-->
+
+        <div class="clearfix"></div>
+
+    </header><!-- /.top-area-->
+    <!-- top-area End -->
+
+    <!--welcome-hero start -->
+    <section id="welcome-hero" class="welcome-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="header-text">
+                        <span class="hero-badge"><i class="fa fa-circle" aria-hidden="true"></i> now in private beta &middot; SOC 2 ready</span>
+                        <!-- Hero headline: plain, static, semantic text.
+                             Deliberately NO animation: the copy is readable the
+                             instant the page paints and it never moves.
+                             The three authored lines are kept with <br> so the
+                             centred block stays a centred block, and the
+                             aria-label matches the visible text exactly. The
+                             name keeps its aurora gradient through `.hero-name`
+                             - that is PAINT ONLY (CSS, static), not an
+                             animation. -->
+                        <h2 class="hero-title" aria-label="BuildUrgent AI. Ship AI agents that do real work."><span
+                                class="hero-name">BuildUrgent AI.</span><br>Ship AI agents that<br>do real work.</h2>
+                        <p>The agentic AI platform for product teams — design, deploy and observe AI agents that run your real workflows.</p>
+                        <div class="hero-actions">
+                            <a class="hero-cta" href="#contact">start building</a>
+                            <a class="hero-cta hero-cta--ghost" href="#education">see how it works</a>
+                        </div><!--/.hero-actions-->
+                    </div><!--/.header-text-->
+                </div><!--/.col-->
+            </div><!-- /.row-->
+        </div><!-- /.container-->
+
+    </section><!--/.welcome-hero-->
+    <!--welcome-hero end -->
+    <section>
+        <!-- AdSense slots from the legacy portfolio site were removed: a company
+             product site does not monetise with third-party display ads, and the
+             external ad scripts only added dead weight and console noise. -->
+    </section>
+    <!--about start -->
+    <section id="about" class="about">
+        <div class="section-heading text-center">
+            <h2>why buildurgent ai</h2>
+        </div>
+        <div class="container">
+            <div class="about-content">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="single-about-txt">
+                            <h3>
+                                AI agents that ship to production — not demos.
+                            </h3>
+                            <p>
+                                BuildUrgent AI gives product teams one control plane for agents: connect your
+                                tools, APIs and data, compose multi-agent workflows with guardrails and human
+                                approval gates, then trace every run in production and improve prompts and tools
+                                from live evidence.
+                            </p>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="single-about-add-info">
+                                        <h3>docs</h3>
+                                        <p>ai.buildurgent.com</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="single-about-add-info">
+                                        <h3>email</h3>
+                                        <p>hello@buildurgent.com</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="single-about-add-info">
+                                        <h3>sales</h3>
+                                        <p>sales@buildurgent.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-offset-1 col-sm-5">
+                        <div class="single-about-img">
+
+                            <div class="box">
+                                <div class="content">
+                                    <h2>BuildUrgent AI<br></h2>
+                                    <span>agentic AI platform</span>
+                                    <a href="#contact">book a demo</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/.about-->
+    <!--about end -->
+
+    <!--education start -->
+    <section id="education" class="education">
+        <div class="section-heading text-center">
+            <h2>how it works</h2>
+        </div>
+        <div class="container">
+            <div class="education-horizontal-timeline">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="single-horizontal-timeline">
+                            <div class="experience-time">
+                                <h2>01 · Connect</h2>
+                                <h3>connect your systems</h3>
+                            </div><!--/.experience-time-->
+                            <div class="timeline-horizontal-border">
+                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                <span class="single-timeline-horizontal"></span>
+                            </div>
+                            <div class="timeline">
+                                <div class="timeline-content">
+                                    <h4 class="title">
+                                        Plug in your stack
+                                    </h4>
+                                    <h5>tools, APIs and data</h5>
+                                    <p class="description">
+                                        Point BuildUrgent AI at your tools, APIs and data — 120+ connectors plus MCP
+                                        and custom functions.
+                                    </p>
+                                </div><!--/.timeline-content-->
+                            </div><!--/.timeline-->
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="single-horizontal-timeline">
+                            <div class="experience-time">
+                                <h2>02 · Compose</h2>
+                                <h3>design the workflow</h3>
+                            </div><!--/.experience-time-->
+                            <div class="timeline-horizontal-border">
+                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                <span class="single-timeline-horizontal"></span>
+                            </div>
+                            <div class="timeline">
+                                <div class="timeline-content">
+                                    <h4 class="title">
+                                        Multi-agent workflows
+                                    </h4>
+                                    <h5>guardrails, evals and approvals</h5>
+                                    <p class="description">
+                                        Design multi-agent workflows, set guardrails, evaluation suites and human
+                                        approval gates.
+                                    </p>
+                                </div><!--/.timeline-content-->
+                            </div><!--/.timeline-->
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="single-horizontal-timeline">
+                            <div class="experience-time">
+                                <h2>03 · Ship & observe</h2>
+                                <h3>run it in production</h3>
+                            </div><!--/.experience-time-->
+                            <div class="timeline-horizontal-border">
+                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                <span class="single-timeline-horizontal spacial-horizontal-line
+									"></span>
+                            </div>
+                            <div class="timeline">
+                                <div class="timeline-content">
+                                    <h4 class="title">
+                                        Deploy and trace
+                                    </h4>
+                                    <h5>live traces and evaluations</h5>
+                                    <p class="description">
+                                        Deploy to production, trace every run, and improve prompts and tools from live
+                                        evidence.
+                                    </p>
+                                </div><!--/.timeline-content-->
+                            </div><!--/.timeline-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section><!--/.education-->
+    <!--education end -->
+
+    <!--skills start -->
+    <section id="skills" class="skills">
+        <div class="skill-content">
+            <div class="section-heading text-center">
+                <h2>capabilities</h2>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="single-skill-content">
+                            <div class="barWrapper">
+                                <span class="progressText">Agent orchestration</span>
+                                <div class="single-progress-txt">
+                                    <div class="progress ">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="97"
+                                            aria-valuemin="10" aria-valuemax="100" style="">
+
+                                        </div>
+                                    </div>
+                                    <h3>97%</h3>
+                                </div>
+                            </div><!-- /.barWrapper -->
+                            <div class="barWrapper">
+                                <span class="progressText">Tool & API integrations</span>
+                                <div class="single-progress-txt">
+                                    <div class="progress ">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="94"
+                                            aria-valuemin="10" aria-valuemax="100" style="">
+
+                                        </div>
+                                    </div>
+                                    <h3>94%</h3>
+                                </div>
+                            </div><!-- /.barWrapper -->
+                            <div class="barWrapper">
+                                <span class="progressText">Retrieval & RAG pipelines</span>
+                                <div class="single-progress-txt">
+                                    <div class="progress ">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="92"
+                                            aria-valuemin="10" aria-valuemax="100" style="">
+
+                                        </div>
+                                    </div>
+                                    <h3>92%</h3>
+                                </div>
+                            </div><!-- /.barWrapper -->
+                            <div class="barWrapper">
+                                <span class="progressText">Evaluations & guardrails</span>
+                                <div class="single-progress-txt">
+                                    <div class="progress ">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="90"
+                                            aria-valuemin="10" aria-valuemax="100" style="">
+
+                                        </div>
+                                    </div>
+                                    <h3>90%</h3>
+                                </div>
+                            </div><!-- /.barWrapper -->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="single-skill-content">
+                            <div class="barWrapper">
+                                <span class="progressText">Run observability</span>
+                                <div class="single-progress-txt">
+                                    <div class="progress ">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="88"
+                                            aria-valuemin="10" aria-valuemax="100" style="">
+
+                                        </div>
+                                    </div>
+                                    <h3>88%</h3>
+                                </div>
+                            </div><!-- /.barWrapper -->
+                            <div class="barWrapper">
+                                <span class="progressText">Enterprise security</span>
+                                <div class="single-progress-txt">
+                                    <div class="progress ">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="95"
+                                            aria-valuemin="10" aria-valuemax="100" style="">
+
+                                        </div>
+                                    </div>
+                                    <h3>95%</h3>
+                                </div>
+                            </div><!-- /.barWrapper -->
+                            <div class="barWrapper">
+                                <span class="progressText">Model routing</span>
+                                <div class="single-progress-txt">
+                                    <div class="progress ">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="91"
+                                            aria-valuemin="10" aria-valuemax="100" style="">
+
+                                        </div>
+                                    </div>
+                                    <h3>91%</h3>
+                                </div>
+                            </div><!-- /.barWrapper -->
+                            <div class="barWrapper">
+                                <span class="progressText">Human-in-the-loop</span>
+                                <div class="single-progress-txt">
+                                    <div class="progress ">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="86"
+                                            aria-valuemin="10" aria-valuemax="100" style="">
+
+                                        </div>
+                                    </div>
+                                    <h3>86%</h3>
+                                </div>
+                            </div><!-- /.barWrapper -->
+                        </div>
+                    </div>
+                </div><!-- /.row -->
+            </div> <!-- /.container -->
+        </div><!-- /.skill-content-->
+
+    </section><!--/.skills-->
+    <!--skills end -->
+
+
+    <!--experience start -->
+    <section id="experience" class="experience">
+        <div class="section-heading text-center">
+            <h2>use cases</h2>
+        </div>
+        <div class="container">
+            <div class="experience-content">
+                <div class="main-timeline">
+                    <ul>
+                        <li>
+                            <div class="single-timeline-box fix">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="experience-time text-right">
+                                            <h1>
+                                                <bold>Support</bold>
+                                            </h1>
+                                            <h3>-62% first response time</h3>
+                                        </div><!--/.experience-time-->
+                                    </div><!--/.col-->
+                                    <div class="col-md-offset-1 col-md-5">
+                                        <div class="timeline">
+                                            <div class="timeline-content">
+                                                <h4 class="title">
+                                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                                    Customer support triage
+                                                </h4>
+                                                <h5>Support</h5>
+                                                <p class="description">
+                                                    Agents triage tickets, draft replies and escalate edge cases to humans with a full audit trail.
+                                                </p>
+                                            </div><!--/.timeline-content-->
+                                        </div><!--/.timeline-->
+                                    </div><!--/.col-->
+                                </div>
+                            </div><!--/.single-timeline-box-->
+                        </li>
+
+                        <li>
+                            <div class="single-timeline-box fix">
+                                <div class="row">
+                                    <div class="col-md-offset-1 col-md-5 experience-time-responsive">
+                                        <div class="experience-time">
+                                            <h2>
+                                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+
+                                            </h2>
+                                            <h3></h3>
+                                        </div><!--/.experience-time-->
+                                    </div><!--/.col-->
+                                    <div class="col-md-5">
+                                        <div class="timeline">
+                                            <div class="timeline-content text-right">
+                                                <h4 class="title">
+                                                    Sales research & CRM hygiene
+                                                </h4>
+                                                <h5>GTM</h5>
+                                                <p class="description">
+                                                    Researches accounts, enriches records and keeps the CRM clean before every rep call.
+                                                </p>
+                                            </div><!--/.timeline-content-->
+                                        </div><!--/.timeline-->
+                                    </div><!--/.col-->
+                                    <div class="col-md-offset-1 col-md-5 experience-time-main">
+                                        <div class="experience-time">
+                                            <h2>
+                                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                                <bold>GTM</bold>
+                                            </h2>
+                                            <h3>3x qualified pipeline</h3>
+                                        </div><!--/.experience-time-->
+                                    </div><!--/.col-->
+                                </div>
+                            </div><!--/.single-timeline-box-->
+                        </li>
+
+                        <li>
+                            <div class="single-timeline-box fix">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="experience-time text-right">
+                                            <h2><bold>Insurance</bold></h2>
+                                            <h3>94% extraction accuracy</h3>
+                                        </div><!--/.experience-time-->
+                                    </div><!--/.col-->
+                                    <div class="col-md-offset-1 col-md-5">
+                                        <div class="timeline">
+                                            <div class="timeline-content">
+                                                <h4 class="title">
+                                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                                    Document intelligence
+                                                </h4>
+                                                <h5>Insurance</h5>
+                                                <p class="description">
+                                                    Extracts fields from invoices, claims and contracts with confidence scores for review.
+                                                </p>
+                                            </div><!--/.timeline-content-->
+                                        </div><!--/.timeline-->
+                                    </div><!--/.col-->
+                                </div>
+                            </div><!--/.single-timeline-box-->
+                        </li>
+
+                        <li>
+                            <div class="single-timeline-box fix">
+                                <div class="row">
+                                    <div class="col-md-offset-1 col-md-5 experience-time-responsive">
+                                        <div class="experience-time">
+                                            <h2>
+                                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                                <bold>Platform</bold>
+                                            </h2>
+                                            <h3>41% faster onboarding</h3>
+                                        </div><!--/.experience-time-->
+                                    </div><!--/.col-->
+                                    <div class="col-md-5">
+                                        <div class="timeline">
+                                            <div class="timeline-content text-right">
+                                                <h4 class="title">
+                                                    Engineering copilots
+                                                </h4>
+                                                <h5>Platform</h5>
+                                                <p class="description">
+                                                    Reviews pull requests, drafts fixes and answers codebase questions for new engineers.
+                                                </p>
+                                            </div><!--/.timeline-content-->
+                                        </div><!--/.timeline-->
+                                    </div><!--/.col-->
+                                    <div class="col-md-offset-1 col-md-5 experience-time-main">
+                                        <div class="experience-time">
+                                            <h2>
+                                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                                <bold>Platform</bold>
+                                            </h2>
+                                            <h3>41% faster onboarding</h3>
+                                        </div><!--/.experience-time-->
+                                    </div><!--/.col-->
+                                </div>
+                            </div><!--/.single-timeline-box-->
+                        </li>
+
+
+                    </ul>
+                </div><!--.main-timeline-->
+            </div><!--.experience-content-->
+        </div>
+
+    </section><!--/.experience-->
+    <!--experience end -->
+
+    <!--profiles start -->
+    <section id="profiles" class="profiles">
+        <div class="profiles-details">
+            <div class="section-heading text-center">
+                <h2>security & trust</h2>
+            </div>
+            <div class="container">
+                <div class="profiles-content">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="single-profile">
+                                <div class="profile-txt">
+                                    <a href="#contact"><i class="fa fa-shield" aria-hidden="true"></i></a>
+                                    <div class="profile-icon-name">SOC 2 Type II</div>
+                                </div>
+                                <div class="single-profile-overlay">
+                                    <div class="profile-txt">
+                                        <a href="#contact"><i class="fa fa-shield" aria-hidden="true"></i></a>
+                                        <div class="profile-icon-name">SOC 2 Type II</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="single-profile profile-no-border">
+                                <div class="profile-txt">
+                                    <a href="#contact"><i class="fa fa-server" aria-hidden="true"></i></a>
+                                    <div class="profile-icon-name">your data stays yours</div>
+                                </div>
+                                <div class="single-profile-overlay">
+                                    <div class="profile-txt">
+                                        <a href="#contact"><i class="fa fa-server" aria-hidden="true"></i></a>
+                                        <div class="profile-icon-name">your data stays yours</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="single-profile">
+                                <div class="profile-txt">
+                                    <a href="#contact"><i class="fa fa-lock" aria-hidden="true"></i></a>
+                                    <div class="profile-icon-name">SSO, RBAC & audit logs</div>
+                                </div>
+                                <div class="single-profile-overlay">
+                                    <div class="profile-txt">
+                                        <a href="#contact"><i class="fa fa-lock" aria-hidden="true"></i></a>
+                                        <div class="profile-icon-name">SSO, RBAC & audit logs</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section><!--/.profiles-->
+    <!--profiles end -->
+
+    <!--portfolio start -->
+    <section id="portfolio" class="portfolio">
+        <div class="portfolio-details">
+            <div class="section-heading text-center">
+                <h2>what teams ship</h2>
+            </div>
+            <div class="container">
+                <div class="portfolio-content">
+                    <div class="isotope">
+                        <div class="row">
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p1.svg" alt="Support triage agent workflow" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Support triage agents — Customer experience
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p2.svg" alt="Invoice and claims extraction agent" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Invoice & claims extraction — Document AI
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p3.svg" alt="Meeting-to-CRM sync agent" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Meeting-to-CRM sync — Revenue ops
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+                        </div><!-- /.row -->
+
+                        <div class="row">
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p4.svg" alt="Code review agents" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Code review agents — Engineering
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p5.svg" alt="Dealer and product locator agent" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Dealer & product locators — Commerce
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p6.svg" alt="Personalisation agents" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Personalisation agents — Marketing
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+                        </div><!-- /.row -->
+
+
+                        <div class="row">
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p7.svg" alt="Fraud signal triage agent" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Fraud signal triage — Risk & compliance
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p8.svg" alt="Onboarding copilots" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Onboarding copilots — HR & ops
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p9.svg" alt="Clinical intake summarisation" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Clinical intake summarisation — Healthcare
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+                        </div><!-- /.row -->
+
+                        <div class="row">
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p10.svg" alt="Procurement agents" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Procurement agents — Supply chain
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div>
+
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p11.svg" alt="Knowledge assistants" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Knowledge assistants — Internal search
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p12.svg" alt="Cyber resilience agent" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Voice-of-customer analytics — Insights
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+                        </div><!-- /.row -->
+
+
+                        <div class="row">
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p13.svg" alt="Role-based access control agent" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Field service dispatch — Logistics
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p14.svg" alt="Subscription save agents" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Subscription save agents — Retention
+
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p15.svg" alt="Localisation agents" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Localisation agents — Global teams
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+                        </div><!-- /.row -->
+
+
+                        <div class="row">
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p16.svg" alt="Compliance Q&A agent" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Compliance Q&A — GRC
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p17.svg" alt="Campaign QA agents" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Campaign QA agents — Adtech
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+
+                            <div class="col-sm-4">
+                                <div class="item">
+                                    <img src="assets/images/portfolio/p18.svg" alt="Answer engines over docs agent" width="600" height="400" />
+                                    <div class="isotope-overlay">
+                                        <a href="#contact">
+                                            Answer engines over docs — Customer success
+                                        </a>
+                                    </div><!-- /.isotope-overlay -->
+                                </div><!-- /.item -->
+                            </div><!-- /.col -->
+
+                        </div><!-- /.row -->
+
+
+
+                    </div><!--/.isotope-->
+                </div><!--/.gallery-content-->
+            </div><!--/.container-->
+        </div><!--/.portfolio-details-->
+
+    </section><!--/.portfolio-->
+    <!--portfolio end -->
+
+    <!--integrations start -->
+    <section id="clients" class="clients">
+        <div class="section-heading text-center">
+            <h2>integrations</h2>
+        </div>
+        <div class="clients-area">
+            <div class="container">
+                <div class="client-3d" id="client3d" role="region" aria-roledescription="carousel"
+                    aria-label="Integration showcase">
+                    <div class="client-3d__stage" id="client3dStage" tabindex="0">
+
+                        <div class="client-3d__slide" role="group" aria-roledescription="slide"
+                            aria-label="1 of 6: Data warehouse">
+                            <a class="client-3d__tile" href="#">
+                                <span class="client-3d__glow" aria-hidden="true"></span>
+                                <span class="client-3d__mark" aria-hidden="true">DW</span>
+                                <span class="client-3d__name">Data warehouse</span>
+                                <span class="client-3d__meta">Snowflake &middot; BigQuery</span>
+                            </a>
+                        </div>
+
+                        <div class="client-3d__slide" role="group" aria-roledescription="slide"
+                            aria-label="2 of 6: CRM and support">
+                            <a class="client-3d__tile" href="#">
+                                <span class="client-3d__glow" aria-hidden="true"></span>
+                                <span class="client-3d__mark" aria-hidden="true">CRM</span>
+                                <span class="client-3d__name">CRM &amp; support</span>
+                                <span class="client-3d__meta">Salesforce &middot; Zendesk</span>
+                            </a>
+                        </div>
+
+                        <div class="client-3d__slide" role="group" aria-roledescription="slide"
+                            aria-label="3 of 6: Documents and search">
+                            <a class="client-3d__tile" href="#">
+                                <span class="client-3d__glow" aria-hidden="true"></span>
+                                <span class="client-3d__mark" aria-hidden="true">DOC</span>
+                                <span class="client-3d__name">Docs &amp; search</span>
+                                <span class="client-3d__meta">SharePoint &middot; Confluence</span>
+                            </a>
+                        </div>
+
+                        <div class="client-3d__slide" role="group" aria-roledescription="slide"
+                            aria-label="4 of 6: Code and CI">
+                            <a class="client-3d__tile" href="#">
+                                <span class="client-3d__glow" aria-hidden="true"></span>
+                                <span class="client-3d__mark" aria-hidden="true">CI</span>
+                                <span class="client-3d__name">Code &amp; CI</span>
+                                <span class="client-3d__meta">GitHub &middot; GitLab</span>
+                            </a>
+                        </div>
+
+                        <div class="client-3d__slide" role="group" aria-roledescription="slide"
+                            aria-label="5 of 6: Messaging">
+                            <a class="client-3d__tile" href="#">
+                                <span class="client-3d__glow" aria-hidden="true"></span>
+                                <span class="client-3d__mark" aria-hidden="true">MSG</span>
+                                <span class="client-3d__name">Messaging</span>
+                                <span class="client-3d__meta">Slack &middot; Teams</span>
+                            </a>
+                        </div>
+
+                        <div class="client-3d__slide" role="group" aria-roledescription="slide"
+                            aria-label="6 of 6: Model providers">
+                            <a class="client-3d__tile" href="#">
+                                <span class="client-3d__glow" aria-hidden="true"></span>
+                                <span class="client-3d__mark" aria-hidden="true">LLM</span>
+                                <span class="client-3d__name">Model providers</span>
+                                <span class="client-3d__meta">OpenAI &middot; Anthropic</span>
+                            </a>
+                        </div>
+
+                    </div><!--/.client-3d__stage-->
+
+                    <button class="client-3d__nav client-3d__nav--prev" type="button"
+                        data-client-prev aria-label="Previous integration">
+                        <span aria-hidden="true">&#8249;</span>
+                    </button>
+                    <button class="client-3d__nav client-3d__nav--next" type="button"
+                        data-client-next aria-label="Next integration">
+                        <span aria-hidden="true">&#8250;</span>
+                    </button>
+
+                    <div class="client-3d__dots" id="client3dDots" data-client-dots role="tablist"
+                        aria-label="Choose an integration"></div>
+                </div><!--/.client-3d-->
+            </div><!--/.container-->
+        </div><!--/.clients-area-->
+
+    </section><!--/.clients-->
+
+
+
+    <!--integrations end -->
+
+    <!--contact start -->
+    <section id="contact" class="contact">
+        <div class="section-heading text-center">
+            <h2>talk to us</h2>
+        </div>
+        <div class="container">
+            <div class="contact-content">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-5 col-sm-6">
+                        <div class="single-contact-box">
+                            <div class="contact-cta">
+                                <h3>Tell us what you want to automate</h3>
+                                <p>Bring one workflow — we will show you the agents, tools, guardrails and pilot plan
+                                    that get it into production.</p>
+                                <div class="single-contact-btn">
+                                    <a class="contact-btn" href="mailto:sales@buildurgent.com">book a demo</a>
+                                </div><!--/.single-contact-btn-->
+                                <ul>
+                                    <li>30-minute workflow review</li>
+                                    <li>Reference architecture</li>
+                                    <li>Pilot plan for your team</li>
+                                </ul><!--/ul-->
+                            </div><!--/.contact-cta-->
+                        </div><!--/.single-contact-box-->
+                    </div><!--/.col-->
+
+                    <div class="col-md-offset-1 col-md-5 col-sm-6">
+                        <div class="single-contact-box">
+                            <div class="contact-adress">
+                                <div class="contact-add-head">
+                                    <h3>BuildUrgent AI</h3>
+                                    <p>agentic AI platform</p>
+                                </div>
+                                <div class="contact-add-info">
+                                    <div class="single-contact-add-info">
+                                        <h3>email</h3>
+                                        <p>hello@buildurgent.com</p>
+                                    </div>
+                                    <div class="single-contact-add-info">
+                                        <h3>sales</h3>
+                                        <p>sales@buildurgent.com</p>
+                                    </div>
+                                    <div class="single-contact-add-info">
+                                        <h3>website</h3>
+                                        <p>ai.buildurgent.com</p>
+                                    </div>
+                                </div>
+                            </div><!--/.contact-adress-->
+                        </div><!--/.single-contact-box-->
+                    </div><!--/.col-->
+                </div><!--/.row-->
+            </div><!--/.contact-content-->
+        </div><!--/.container-->
+
+    </section><!--/.contact-->
+    <!--contact end -->
+    <!--footer-copyright start-->
+    <footer id="footer-copyright" class="footer-copyright">
+        <div class="container">
+            <div class="hm-footer-copyright text-center">
+                <p>&copy; 2025 BuildUrgent AI &middot; ai.buildurgent.com — agentic AI for real work.</p>
+                <ul>
+                    <li class="smooth-menu1"><a href="#contact">contact</a></li>
+                    <li class="smooth-menu1"><a href="assets/download/PrivacyPolicy.pdf">Privacy Policy</a></li>
+                    <li class="smooth-menu1"><a href="assets/download/TermsConditions.pdf">Terms &amp; Conditions</a></li>
+                </ul><!--/ul-->
+            </div><!--/.text-center-->
+        </div><!--/.container-->
+
+        <div id="scroll-Top">
+            <div class="return-to-top">
+                <i class="fa fa-angle-up " id="scroll-top"></i>
+            </div>
+
+        </div><!--/.scroll-Top-->
+
+    </footer><!--/.footer-copyright-->
+    <!--footer-copyright end-->
+
+    <!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+    <script src="assets/js/jquery.js"></script>
+
+    <!--bootstrap.min.js-->
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- bootsnav js -->
+    <script src="assets/js/bootsnav.js"></script>
+
+    <!-- jquery.sticky.js -->
+    <script src="assets/js/jquery.sticky.js"></script>
+
+    <!-- for progress bar start-->
+
+    <!-- progressbar js -->
+    <script src="assets/js/progressbar.js"></script>
+
+    <!-- appear js -->
+    <script src="assets/js/jquery.appear.js"></script>
+
+    <!-- for progress bar end -->
+
+    <!--owl.carousel.js-->
+    <script src="assets/js/owl.carousel.min.js"></script>
+
+
+    <!--Custom JS-->
+    <script src="assets/js/custom.js"></script>
+
+    <!--3D background: vendored Three.js r128 + the Astra WebGL scene, then the
+        CSS-parallax fallback driver (which bails when WebGL took over).
+        The hero HEADLINE is deliberately NOT animated and has no script of its
+        own any more (the per-letter and WebGL typing layers were removed): it is
+        plain static text. Only the background stage above is scripted.-->
+    <script src="assets/js/three.min.js" defer></script>
+    <script src="assets/js/astra3d.js" defer></script>
+    <script src="assets/js/parallax3d.js"></script>
+    <!-- Analytics tag (gtag.js) removed for the product site: the legacy GA
+         property only made the page depend on an external host. Wire in the
+         company's own analytics here if/when required. -->
+    <style>
+        /* nav link padding is owned by the theme layer (style.css / responsive.css) */
+        .owl-stage {
+    max-width: 100vw !important;
+        }
+    </style>
+</body>
+
+</html>
