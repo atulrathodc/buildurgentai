@@ -55,8 +55,11 @@ SITE = {
     "site": "https://ai.buildurgent.com",
     "docs": "https://ai.buildurgent.com/#about",
     "demo": "https://ai.buildurgent.com/#contact",
-    "contact": "hello@buildurgent.com",
-    "sales": "sales@buildurgent.com",
+    #: The one mailbox the product is reachable at - the same address the page prints.
+    "contact": "atulrathodc@gmail.com",
+    # Alias kept so the /api/profile payload shape stays stable (there is a single
+    # contact mailbox now; the old sales@ address was a placeholder).
+    "sales": "atulrathodc@gmail.com",
 }
 
 #: The platform capabilities exposed by GET /api/features (stable, documented shape).

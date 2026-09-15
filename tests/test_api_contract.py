@@ -16,6 +16,14 @@ ROOT = Path(__file__).resolve().parents[1]
 INDEX_HTML = ROOT / "index.html"
 SERVER_PY = ROOT / "backend" / "server.py"
 
+#: The one mailbox the product is contactable at (owner's real mail id). The page prints
+#: it and GET /api/profile exposes it, so it legitimately contains the personal tokens the
+#: resume leak-guard below bans. The guard therefore scans the markup with this address
+#: removed instead of being weakened - any *other* occurrence still fails the test.
+CONTACT_EMAIL = "atulrathodc@gmail.com"
+#: Placeholder addresses that must never come back.
+STALE_CONTACTS = ("hello@buildurgent.com", "sales@buildurgent.com")
+
 
 def _load_server():
     """Import backend/server.py by path (it is not an installed package)."""
@@ -125,9 +133,35 @@ def test_no_personal_resume_is_shipped():
 
 
 def test_no_personal_content_in_live_markup():
-    """The shipped page must read as the product site, not a personal portfolio."""
+    """The shipped page must read as the product site, not a personal portfolio.
+
+    The sanctioned contact address (``CONTACT_EMAIL``) contains the owner's name, so it is
+    scrubbed out of the markup *before* the banned-token scan: the guard still catches a
+    résumé/hire-me leak anywhere else on the page, while the one legitimate occurrence -
+    the contact mailbox - is allowed (and separately asserted below).
+    """
     live = INDEX_HTML.read_text(encoding="utf-8").lower()
 
-    for token in ("atul", "rathod", "my resume", "hire me"):
-        assert token not in live, "personal token %r leaked into index.html" % token
+    assert CONTACT_EMAIL in live, "the page must print the real contact address"
+    scrubbed = live.replace(CONTACT_EMAIL, "<contact-email>")
+
+    for token in ("atul", "rathod", "my resume", "hire me", "download resume"):
+        assert token not in scrubbed, "personal token %r leaked into index.html" % token
     assert "buildurgent ai" in live
+
+
+def test_live_page_uses_the_real_contact_email():
+    """Markup and API must advertise one address: ``atulrathodc@gmail.com``."""
+    live = INDEX_HTML.read_text(encoding="utf-8")
+
+    for stale in STALE_CONTACTS:
+        assert stale not in live.lower(), (
+            "placeholder contact address %r is still shipped in index.html" % stale
+        )
+    assert 'fs=1&to=%s"' % CONTACT_EMAIL in live, (
+        "the 'book a demo' GMail compose link must target %s" % CONTACT_EMAIL
+    )
+
+    data = server.profile()
+    assert data["contact"] == CONTACT_EMAIL
+    assert data["sales"] == CONTACT_EMAIL
